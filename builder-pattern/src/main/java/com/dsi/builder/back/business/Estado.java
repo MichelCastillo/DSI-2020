@@ -5,10 +5,19 @@ public class Estado {
     // Atributos
     private String ambito;
     private String nombre;
+    private EstadosPedido estadoPedido;
 
     // Metodos
     public String getNombre() {
         return this.nombre;
+    }
+    
+    public void setEstadoPedido(EstadosPedido estado) {
+    	this.estadoPedido = estado;
+    };
+    
+    public EstadosPedido getEstadoPedido() {
+    	return this.estadoPedido;
     }
 
     public Estado(String ambito, String nombre) {
@@ -79,4 +88,6 @@ public class Estado {
     public boolean esNotificado() {
         return nombre.equals("Notificado");
     }
+    
+    //
 }
