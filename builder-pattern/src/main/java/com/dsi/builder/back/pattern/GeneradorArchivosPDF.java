@@ -9,11 +9,7 @@ public class GeneradorArchivosPDF {
 	public GeneradorArchivosPDF() {
 	}
 	
-	public void agregarFila(String nombreEstado,
-							Double tiempoPermProm,
-							Double tiempoPermMax,
-							Double tiempoPermMin						
-						   ) {};
+	public void agregarFila(String nombreEstado, Double tiempoPermProm, Double tiempoPermMax, Double tiempoPermMin) {};
 	
 	public void iniciarFila() {};
 	
