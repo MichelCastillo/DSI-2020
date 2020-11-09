@@ -1,5 +1,12 @@
 package com.dsi.builder.back.pattern;
 
+
+/**
+ * Builder interface defines all possible ways to configure a product
+ * 
+ * @author lcastillo7
+ *
+ */
 public interface IConstructorReporte {
 	
 	public int calcularNroPagina();

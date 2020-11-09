@@ -1,10 +1,22 @@
 package com.dsi.builder.back.pattern;
 
+/**
+ * GeneradorArchivosPDF is a product class
+ * 
+ * @author lcastillo7
+ *
+ */
 public class GeneradorArchivosPDF implements IPresentacionReporte{
 	
 	private String[] reporteCuerpo;
 	private String reporteEncabezado;
 	private String reportePie;
+	private String fechaFin;
+	private String fechaHoraGeneracion;
+	private String fechaInicio;
+	private String titulo;
+	private String usuario;
+	
 	
 	public GeneradorArchivosPDF() {
 	}
@@ -22,8 +34,6 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	public void setFechaInicio(String fechaInicio) {};
 	
 	public void setFila() {};
-	
-	public int setNroPagina() {return 0;};
 	
 	public int setNroPagina(int numeroPagina) {return 0;};
 	

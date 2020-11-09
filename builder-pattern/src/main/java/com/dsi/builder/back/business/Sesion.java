@@ -31,7 +31,7 @@ public class Sesion {
         return usuario.getNombre();
     }
 
-    public boolean estavigente()
+    public boolean estaVigente()
     {
         return fechaFin != null;
     }
