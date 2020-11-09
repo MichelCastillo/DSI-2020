@@ -7,9 +7,9 @@ public class DirectorConstruccionReporte {
 						  String fechaFin,
 						  String estados[],
 						  String sectores[],
-						  Double tiempoPermProm[][],
-						  Double tiempoPermMax[][],
-						  Double tiempoPermMin[][],
+						  double tiempoPermProm[][],
+						  double tiempoPermMax[][],
+						  double tiempoPermMin[][],
 						  String nomUsuario,
 						  String fechaHoraGeneracion
 			             ) 

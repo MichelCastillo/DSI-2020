@@ -21,7 +21,7 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	public GeneradorArchivosPDF() {
 	}
 	
-	public void agregarFila(String nombreEstado, Double tiempoPermProm, Double tiempoPermMax, Double tiempoPermMin) {};
+	public void agregarFila(String nombreEstado, double tiempoPermProm, double tiempoPermMax, double tiempoPermMin) {};
 	
 	public void iniciarFila() {};
 	

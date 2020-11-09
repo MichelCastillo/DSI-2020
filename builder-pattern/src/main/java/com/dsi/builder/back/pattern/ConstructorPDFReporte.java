@@ -27,8 +27,8 @@ public class ConstructorPDFReporte implements IConstructorReporte {
 		
 	}
 
-	public void construirCuerpo(String[] estados, String[] vectores, Double[][] tiempoPermProm,
-			Double[][] tiempoPermMax, Double[][] tiempoPermMin) {
+	public void construirCuerpo(String[] estados, String[] vectores, double[][] tiempoPermProm,
+			double[][] tiempoPermMax, double[][] tiempoPermMin) {
 		// TODO Auto-generated method stub
 		
 	}

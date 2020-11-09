@@ -15,7 +15,7 @@ public interface IConstructorReporte {
 	
 	public void construirProducto();
 	
-	public void construirCuerpo(String estados[], String vectores[], Double tiempoPermProm[][], Double tiempoPermMax[][], Double tiempoPermMin[][]);
+	public void construirCuerpo(String estados[], String vectores[], double tiempoPermProm[][], double tiempoPermMax[][], double tiempoPermMin[][]);
 	
 	public void construirEncabezado(String titulo, String fechaInicio, String fechaFin);
 	
