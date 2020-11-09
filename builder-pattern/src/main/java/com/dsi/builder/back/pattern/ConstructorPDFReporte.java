@@ -32,8 +32,9 @@ public class ConstructorPDFReporte implements IConstructorReporte {
 		
 	}
 
-	public void obtenerProducto() {
+	public IPresentacionReporte obtenerProducto() {
 		// TODO Auto-generated method stub
+		return null;
 		
 	}
 

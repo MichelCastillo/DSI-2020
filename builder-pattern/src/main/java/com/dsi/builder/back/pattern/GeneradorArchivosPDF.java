@@ -1,6 +1,6 @@
 package com.dsi.builder.back.pattern;
 
-public class GeneradorArchivosPDF {
+public class GeneradorArchivosPDF implements IPresentacionReporte{
 	
 	private String[] reporteCuerpo;
 	private String reporteEncabezado;

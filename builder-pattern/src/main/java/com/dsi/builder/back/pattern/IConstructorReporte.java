@@ -12,5 +12,5 @@ public interface IConstructorReporte {
 	
 	public void construirEncabezado(String titulo, String fechaInicio, String fechaFin);
 	
-	public void obtenerProducto(); //TODO: Retornar objeto tipo IPresentaciónReporte
+	public IPresentacionReporte obtenerProducto();
 }
