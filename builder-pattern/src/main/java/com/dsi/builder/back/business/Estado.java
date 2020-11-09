@@ -89,5 +89,4 @@ public class Estado {
         return nombre.equals("Notificado");
     }
     
-    //
 }
