@@ -15,7 +15,5 @@ public class GestorReportesDeTiemposEnPedido {
 	public void generarReportePDF() {};
 	
 	public void FormaVis() {};
-	
-	
 
 }
