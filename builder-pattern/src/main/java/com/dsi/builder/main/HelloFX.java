@@ -29,14 +29,23 @@ public class HelloFX extends Application {
     	Date fechaInicio = sdf.parse(fechaInicioStr);
     	Date fechaFin = sdf.parse(fechaFinStr);
     	
+    	if (!fechaFin.before(fechaInicio)) {
+    		
+    		
+    		
+    	} else {
+    		System.out.print("ERROR DE PERIODO");
+    	}
     	
     	
+    	/*
         String javaVersion = System.getProperty("java.version");
         String javafxVersion = System.getProperty("javafx.version");
         Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
         Scene scene = new Scene(new StackPane(l), 640, 480);
         stage.setScene(scene);
         stage.show();
+        */
     }
 
     public static void main(String[] args) {

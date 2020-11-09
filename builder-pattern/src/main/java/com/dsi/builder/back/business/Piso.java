@@ -17,7 +17,7 @@ public class Piso {
     public void conocerSector(){};
 
 
-    //Metodo le da la responsabilidad de calcular tiemps al sector
+    //Metodo le da la responsabilidad de calcular tiempos al sector
     public Double[][][] calcularTiempos()
     {
         Double matrizTiempo[][][] =new Double[sector.length][3][5];

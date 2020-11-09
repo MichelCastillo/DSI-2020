@@ -12,5 +12,4 @@ public class Sector {
 	
 	public void ConocerSeccion() {};
 	
-	
 }
