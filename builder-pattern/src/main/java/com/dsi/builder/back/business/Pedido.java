@@ -3,11 +3,6 @@ package com.dsi.builder.back.business;
 import java.text.ParseException;
 import java.util.Date;
 
-/**
- * 
- * @author lcastillo7
- *
- */
 public class Pedido {
 	
 	private int nroPedido;
