@@ -12,18 +12,74 @@ public class Factura {
 	private Date fecha;
 	private Date hora;
 	private int numero;
+	private double total;
 	
 	public Factura(String fecha, int numeroFactura) throws ParseException {
 		
 		this.result = df.parse(fecha); // "10/10/2020T20:00:00+0000"
 
 		SimpleDateFormat sdf =  new SimpleDateFormat("dd/MM/yyyy");
-		this.fecha = sdf.parse(fecha);
+		this.setFecha(sdf.parse(fecha));
 		
 		sdf =  new SimpleDateFormat("HH:mm");
-		this.hora = sdf.parse(fecha);
+		this.setHora(sdf.parse(fecha));
 		
+		this.numero = numeroFactura;
+		this.total = Math.random()*100 + 1;
 	}
+
+	/**
+	 * @return the fecha
+	 */
+	public Date getFecha() {
+		return fecha;
+	}
+
+	/**
+	 * @param fecha the fecha to set
+	 */
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	/**
+	 * @return the hora
+	 */
+	public Date getHora() {
+		return hora;
+	}
+
+	/**
+	 * @param hora the hora to set
+	 */
+	public void setHora(Date hora) {
+		this.hora = hora;
+	}
+
+	/**
+	 * @return the numero
+	 */
+	public int getNumero() {
+		return numero;
+	}
+
+	/**
+	 * @param numero the numero to set
+	 */
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	/**
+	 * @return the total
+	 */
+	public double getTotal() {
+		return total;
+	}
+
+	
+	
+	
 	
 
 }

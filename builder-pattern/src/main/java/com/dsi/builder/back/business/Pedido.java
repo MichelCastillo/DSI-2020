@@ -9,15 +9,17 @@ import java.util.Date;
  *
  */
 public class Pedido {
-
+	
+	private int nroPedido;
 	private int cantComensales;
 	private Date fechaHoraPed;
-	private int nroPedido;
+	private Factura factura;
 	
-	public Pedido(int comensales, Date fechaHora, int numero) throws ParseException {
+	public Pedido(int comensales, Date fechaHora, int numero, Factura factura) throws ParseException {
 		this.cantComensales = comensales;
 		this.fechaHoraPed = fechaHora;
-		this.nroPedido = numero;		
+		this.nroPedido = numero;
+		this.factura = factura;
 	}
 	
 	/**
@@ -65,8 +67,8 @@ public class Pedido {
 		//TODO: Implement this method to retrieve a DetallePedido object
 	}
 	
-	public void conocerFactura() {
-		//TODO: Implement this method to retrieve a Factura object
+	public Factura conocerFactura() {
+		return factura;
 	}
 	
 	public void conocerHistorialEstado() {
