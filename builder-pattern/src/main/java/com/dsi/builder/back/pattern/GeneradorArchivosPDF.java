@@ -14,8 +14,8 @@ import com.dsi.builder.back.business.EstadosPedido;
 public class GeneradorArchivosPDF implements IPresentacionReporte{
 	
 	//Attributes
-	private List<String> reporteCuerpo;
 	private List<String> reporteEncabezado;
+	private List<String> reporteCuerpo;
 	private List<String> reportePie;
 	
 	//Encabezado
