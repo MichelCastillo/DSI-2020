@@ -8,7 +8,6 @@ import com.dsi.builder.back.business.EstadosPedido;
 /**
  * GeneradorArchivosPDF is a product class
  * 
- * @author lcastillo7
  *
  */
 public class GeneradorArchivosPDF implements IPresentacionReporte{

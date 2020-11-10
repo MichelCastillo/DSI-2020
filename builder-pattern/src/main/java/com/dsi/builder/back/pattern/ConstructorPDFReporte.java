@@ -4,8 +4,6 @@ import com.dsi.builder.back.pattern.GeneradorArchivosPDF;
 
 /**
  * Concrete builders implement steps defined in the upper interface
- * 
- * @author lcastillo7
  *
  */
 public class ConstructorPDFReporte implements IConstructorReporte {
