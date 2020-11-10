@@ -1,6 +1,5 @@
 package com.dsi.builder.back.business;
 
-import java.text.ParseException;
 import java.util.Date;
 
 public class Pedido {
@@ -9,12 +8,15 @@ public class Pedido {
 	private int cantComensales;
 	private Date fechaHoraPed;
 	private Factura factura;
+	private EstadosPedido estado;
 	
-	public Pedido(int comensales, Date fechaHora, int numero, Factura factura) throws ParseException {
+	public Pedido(int comensales, Date fechaHora, int numero, Factura factura){
+		
 		this.cantComensales = comensales;
 		this.fechaHoraPed = fechaHora;
 		this.nroPedido = numero;
 		this.factura = factura;
+		this.estado = EstadosPedido.CREADO;
 	}
 	
 	/**
@@ -68,5 +70,19 @@ public class Pedido {
 	
 	public void conocerHistorialEstado() {
 		//TODO: Implement this method to retrieve a HistorialEstado object
+	}
+
+	/**
+	 * @return the estado
+	 */
+	public EstadosPedido getEstado() {
+		return estado;
+	}
+
+	/**
+	 * @param estado the estado to set
+	 */
+	public void setEstado(EstadosPedido estado) {
+		this.estado = estado;
 	}
 }

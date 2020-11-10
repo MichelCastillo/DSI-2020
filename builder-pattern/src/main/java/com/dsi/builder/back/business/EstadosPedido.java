@@ -1,6 +1,7 @@
 package com.dsi.builder.back.business;
 
 public enum EstadosPedido {
+	CREADO,
 	CANCELADO,
 	NOTIFICADO,
 	ENTREGADO,

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import com.dsi.builder.back.business.EstadosPedido;
+import com.dsi.builder.back.business.Factura;
 import com.dsi.builder.back.business.Pedido;
 
 import javafx.application.Application;
@@ -29,14 +30,6 @@ public class HelloFX extends Application {
 		EstadosPedido estado6 = EstadosPedido.EN_PREPARACION;
 		EstadosPedido estado7 = EstadosPedido.LISTO_PARA_SERVIR;
 		
-		//Creating Pedidos
-		Pedido pedido1;
-		Pedido pedido2;
-		Pedido pedido3;
-		Pedido pedido4;
-		Pedido pedido5;
-		Pedido pedido6;
-		Pedido pedido7;
 		
 		//Setting a calendar
 		Calendar calendar = Calendar.getInstance();
@@ -56,6 +49,17 @@ public class HelloFX extends Application {
     	
     	calendar.setTime(fechaInicio);
     	calendar.add(Calendar.DAY_OF_YEAR, 5);
+    	
+    	Factura factura = new Factura(fechaInicioStr, 1);
+    	
+    	//Creating Pedidos
+    	Pedido pedido1 = new Pedido(5, calendar.getTime(), 1, factura);
+    	Pedido pedido2;
+    	Pedido pedido3;
+    	Pedido pedido4;
+    	Pedido pedido5;
+    	Pedido pedido6;
+    	Pedido pedido7;
     	
     	
     	
