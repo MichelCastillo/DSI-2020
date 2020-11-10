@@ -3,6 +3,8 @@ package com.dsi.builder.back.pattern;
 import java.util.Date;
 import java.util.List;
 
+import com.dsi.builder.back.business.EstadosPedido;
+
 /**
  * GeneradorArchivosPDF is a product class
  * 
@@ -11,14 +13,25 @@ import java.util.List;
  */
 public class GeneradorArchivosPDF implements IPresentacionReporte{
 	
-	private String[] reporteCuerpo;
+	//Attributes
+	private List<String> reporteCuerpo;
 	private List<String> reporteEncabezado;
 	private List<String> reportePie;
 	
+	//Encabezado
 	private String fechaFin;
-	private String fechaHoraGeneracion;
 	private String fechaInicio;
 	private String titulo;
+	
+	//Cuerpo
+	private String[] estados;
+	private String[] vectores;
+	private double[][] tiempoPermProm;
+	private double[][] tiempoPermMax;
+	private double[][] tiempoPermMin;	
+	
+	//Pie
+	private String fechaHoraGeneracion;
 	private String usuario;
 	private int nroPagina;
 	
@@ -50,6 +63,55 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 		reporteEncabezado.add(fechaFin);
 	};
 	
+	public void setCuerpo(String[] estados, String[] vectores, double[][] tiempoPermProm,
+			double[][] tiempoPermMax, double[][] tiempoPermMin) {
+		
+		this.estados = estados;
+		this.vectores = vectores;
+		this.tiempoPermProm = tiempoPermProm;
+		this.tiempoPermMax = tiempoPermMax;
+		this.tiempoPermMin = tiempoPermMin;
+		
+		reporteCuerpo.add(this.estados.toString());
+		reporteCuerpo.add(this.vectores.toString());
+		reporteCuerpo.add(toString(this.tiempoPermProm));
+		reporteCuerpo.add(toString(this.tiempoPermMax));
+		reporteCuerpo.add(toString(this.tiempoPermMin));
+		
+	};
+			
+	public void setPiePagina(String nombreUsuario, String fechaHoraGeneracion, int nroPagina) {
+			this.usuario = nombreUsuario;
+			this.fechaHoraGeneracion = fechaHoraGeneracion;
+			this.nroPagina = nroPagina;
+			
+			reportePie.add(this.usuario);
+			reportePie.add(this.fechaHoraGeneracion);
+			reportePie.add(String.valueOf(this.nroPagina));
+	};
+	
+	public static String toString(double[][] M) {
+	    String separator = ", ";
+	    StringBuffer result = new StringBuffer();
+
+	    // iterate over the first dimension
+	    for (int i = 0; i < M.length; i++) {
+	    	
+	        // iterate over the second dimension
+	        for(int j = 0; j < M[i].length; j++){
+	            result.append(M[i][j]);
+	            result.append(separator);
+	        }
+	        
+	        // remove the last separator
+	        result.setLength(result.length() - separator.length());
+	        
+	        // add a line break.
+	        result.append("\n");
+	    }
+	    return result.toString();
+	}
+	
 	public void setFechaFin(String fechaFin) {};
 	
 	public void setFechaHoraGeneración(String fechaHoraGeneración) {};
@@ -59,16 +121,6 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	public void setFila() {};
 	
 	public int setNroPagina(int numeroPagina) {return 0;};
-	
-	public void setPiePagina(String nombreUsuario, String fechaHoraGeneracion, int nroPagina) {
-		this.usuario = nombreUsuario;
-		this.fechaHoraGeneracion = fechaHoraGeneracion;
-		this.nroPagina = nroPagina;
-		
-		reportePie.add(this.usuario);
-		reportePie.add(this.fechaHoraGeneracion);
-		reportePie.add(String.valueOf(this.nroPagina));
-	};
 	
 	public void setSectorTabla(String nombreSector) {};
 	

@@ -35,8 +35,7 @@ public class ConstructorPDFReporte implements IConstructorReporte {
 
 	public void construirCuerpo(String[] estados, String[] vectores, double[][] tiempoPermProm,
 			double[][] tiempoPermMax, double[][] tiempoPermMin) {
-		// TODO Auto-generated method stub
-		
+		reporte.setCuerpo(estados, vectores, tiempoPermProm, tiempoPermMax, tiempoPermMin);		
 	}
 
 	public void construirEncabezado(String titulo, String fechaInicio, String fechaFin) {
