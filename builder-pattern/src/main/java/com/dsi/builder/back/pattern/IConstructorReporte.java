@@ -9,7 +9,7 @@ public interface IConstructorReporte {
 	
 	public int calcularNroPagina();
 	
-	public void construirPie(String nomUsuario, String fechaHoraGeneracion, int numeroPagina);
+	public void construirPie(String nomUsuario, String fechaHoraGeneracion);
 	
 	public void construirProducto();
 	
