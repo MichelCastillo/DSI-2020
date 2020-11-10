@@ -45,11 +45,6 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	
 	public void iniciarFila() {};
 	
-	/**
-	 * Making Encabezado
-	 * 
-	 * <titulo, fechaInicio, fechaFin>
-	 */
 	public void setEncabezado(String titulo, String fechaInicio, String fechaFin) {
 		
 		//Setting attributes
@@ -66,12 +61,14 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	public void setCuerpo(String[] estados, String[] vectores, double[][] tiempoPermProm,
 			double[][] tiempoPermMax, double[][] tiempoPermMin) {
 		
+		//Setting Cuerpo attributes
 		this.estados = estados;
 		this.vectores = vectores;
 		this.tiempoPermProm = tiempoPermProm;
 		this.tiempoPermMax = tiempoPermMax;
 		this.tiempoPermMin = tiempoPermMin;
 		
+		//Making Cuerpo
 		reporteCuerpo.add(this.estados.toString());
 		reporteCuerpo.add(this.vectores.toString());
 		reporteCuerpo.add(toString(this.tiempoPermProm));
