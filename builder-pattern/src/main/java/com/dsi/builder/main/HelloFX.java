@@ -50,24 +50,27 @@ public class HelloFX extends Application {
     	calendar.setTime(fechaInicio);
     	calendar.add(Calendar.DAY_OF_YEAR, 5);
     	
-    	Factura factura = new Factura(fechaInicioStr, 1);
+    	Factura factura1 = new Factura(fechaInicioStr, 1);
+    	Factura factura2 = new Factura(fechaInicioStr, 2);
+    	Factura factura3 = new Factura(fechaInicioStr, 3);
+    	Factura factura4 = new Factura(fechaInicioStr, 4);
+    	Factura factura5 = new Factura(fechaInicioStr, 5);
+    	Factura factura6 = new Factura(fechaInicioStr, 6);
+    	Factura factura7 = new Factura(fechaInicioStr, 7);
+    	
     	
     	//Creating Pedidos
-    	Pedido pedido1 = new Pedido(5, calendar.getTime(), 1, factura);
-    	Pedido pedido2;
-    	Pedido pedido3;
-    	Pedido pedido4;
-    	Pedido pedido5;
-    	Pedido pedido6;
-    	Pedido pedido7;
-    	
-    	
-    	
+    	Pedido pedido1 = new Pedido(5, calendar.getTime(), 1, factura1);
+    	Pedido pedido2 = new Pedido(3, calendar.getTime(), 2, factura2);
+    	Pedido pedido3 = new Pedido(2, calendar.getTime(), 3, factura3);
+    	Pedido pedido4 = new Pedido(6, calendar.getTime(), 4, factura4);
+    	Pedido pedido5 = new Pedido(7, calendar.getTime(), 5, factura5);
+    	Pedido pedido6 = new Pedido(2, calendar.getTime(), 6, factura6);
+    	Pedido pedido7 = new Pedido(3, calendar.getTime(), 7, factura7);
     	
     	if (!fechaFin.before(fechaInicio)) {
-    		
-    		
-    		
+    		   		
+    		//TODO: Implementation
     		
     		
     	} else {
