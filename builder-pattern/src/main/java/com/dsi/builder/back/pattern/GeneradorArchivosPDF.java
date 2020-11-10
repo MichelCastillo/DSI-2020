@@ -13,13 +13,14 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	
 	private String[] reporteCuerpo;
 	private List<String> reporteEncabezado;
-	private String reportePie;
+	private List<String> reportePie;
 	
 	private String fechaFin;
 	private String fechaHoraGeneracion;
 	private String fechaInicio;
 	private String titulo;
 	private String usuario;
+	private int nroPagina;
 	
 	public GeneradorArchivosPDF() {
 	}
@@ -59,7 +60,15 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	
 	public int setNroPagina(int numeroPagina) {return 0;};
 	
-	public void setPiePagina(String nombreUsuario, String fechaHoraGeneracion, int nroPagina) {};
+	public void setPiePagina(String nombreUsuario, String fechaHoraGeneracion, int nroPagina) {
+		this.usuario = nombreUsuario;
+		this.fechaHoraGeneracion = fechaHoraGeneracion;
+		this.nroPagina = nroPagina;
+		
+		reportePie.add(this.usuario);
+		reportePie.add(this.fechaHoraGeneracion);
+		reportePie.add(String.valueOf(this.nroPagina));
+	};
 	
 	public void setSectorTabla(String nombreSector) {};
 	

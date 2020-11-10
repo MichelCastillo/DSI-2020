@@ -27,7 +27,9 @@ public class ConstructorPDFReporte implements IConstructorReporte {
 	}
 
 	public void construirPie(String nomUsuario, String fechaHoraGeneracion, int numeroPagina) {
-		reporte.setPiePagina(nomUsuario, fechaHoraGeneracion, numeroPagina);
+		
+		int numPagina = calcularNroPagina();
+		reporte.setPiePagina(nomUsuario, fechaHoraGeneracion, numPagina);
 		
 	}
 
