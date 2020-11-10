@@ -10,20 +10,24 @@ import com.dsi.builder.back.pattern.GeneradorArchivosPDF;
  */
 public class ConstructorPDFReporte implements IConstructorReporte {
 
-	private GeneradorArchivosPDF reporte = new GeneradorArchivosPDF();
+	private GeneradorArchivosPDF reporte;
 	
+	/**
+	 * @return random int value 
+	 * 
+	 * TODO: Implement a real method
+	 */
 	public int calcularNroPagina() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (int) (Math.random() * 10 + 1);
 	}
-
-	public void construirPie(String nomUsuario, String fechaHoraGeneración) {
-		// TODO Auto-generated method stub
+	
+	public void construirProducto() {
+		reporte = new GeneradorArchivosPDF();
 		
 	}
 
-	public void construirProducto() {
-		// TODO Auto-generated method stub
+	public void construirPie(String nomUsuario, String fechaHoraGeneracion, int numeroPagina) {
+		reporte.setPiePagina(nomUsuario, fechaHoraGeneracion, numeroPagina);
 		
 	}
 
@@ -34,13 +38,11 @@ public class ConstructorPDFReporte implements IConstructorReporte {
 	}
 
 	public void construirEncabezado(String titulo, String fechaInicio, String fechaFin) {
-		// TODO Auto-generated method stub
-		
+		reporte.setEncabezado(titulo, fechaInicio, fechaFin);		
 	}
 
 	public IPresentacionReporte obtenerProducto() {
-		// TODO Auto-generated method stub
-		return null;
+		return reporte;
 		
 	}
 
