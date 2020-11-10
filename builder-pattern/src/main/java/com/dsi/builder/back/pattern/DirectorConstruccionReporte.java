@@ -9,11 +9,11 @@ public class DirectorConstruccionReporte {
 	public void construir(String titulo, 
 						  String fechaInicio,
 						  String fechaFin,
-						  String estados[],
-						  String sectores[],
-						  double tiempoPermProm[][],
-						  double tiempoPermMax[][],
-						  double tiempoPermMin[][],
+						  String[] estados,
+						  String[] sectores,
+						  double[][] tiempoPermProm,
+						  double[][] tiempoPermMax,
+						  double[][] tiempoPermMin,
 						  String nomUsuario,
 						  String fechaHoraGeneracion
 			             ) 
