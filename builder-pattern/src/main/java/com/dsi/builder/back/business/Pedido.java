@@ -1,9 +1,13 @@
 package com.dsi.builder.back.business;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 
+ * @author lcastillo7
+ *
+ */
 public class Pedido {
 
 	private int cantComensales;
@@ -57,6 +61,15 @@ public class Pedido {
 		this.cantComensales = cantComensales;
 	}
 	
+	public void conocerDetallePedido() {
+		//TODO: Implement this method to retrieve a DetallePedido object
+	}
 	
+	public void conocerFactura() {
+		//TODO: Implement this method to retrieve a Factura object
+	}
 	
+	public void conocerHistorialEstado() {
+		//TODO: Implement this method to retrieve a HistorialEstado object
+	}
 }
