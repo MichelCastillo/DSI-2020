@@ -4,7 +4,9 @@ public class DirectorConstruccionReporte {
 	
 	private IConstructorReporte constructor;
 	
-	public DirectorConstruccionReporte() {}
+	public DirectorConstruccionReporte(IConstructorReporte constructor) {
+		this.constructor = constructor;
+	}
 	
 	public void construir(String titulo, 
 						  String fechaInicio,
