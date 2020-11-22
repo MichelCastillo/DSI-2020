@@ -16,6 +16,7 @@ import com.dsi.builder.back.business.HistorialEstado;
 import com.dsi.builder.back.business.Mesa;
 import com.dsi.builder.back.business.Pedido;
 import com.dsi.builder.back.business.Seccion;
+import com.dsi.builder.back.business.Sector;
 
 public class main {
 
@@ -307,28 +308,54 @@ public class main {
 		mesas.add(mesa10);
 		
 		//Creating Secciones
-		ArrayList<Seccion> secciones = new ArrayList<Seccion>();
+		ArrayList<Seccion> secciones1Piso1 = new ArrayList<Seccion>();
+		ArrayList<Seccion> secciones2Piso1 = new ArrayList<Seccion>();
+		ArrayList<Seccion> secciones1Piso2 = new ArrayList<Seccion>();
+		ArrayList<Seccion> secciones2Piso2 = new ArrayList<Seccion>();
+		ArrayList<Seccion> secciones1Piso3 = new ArrayList<Seccion>();
+		ArrayList<Seccion> secciones2Piso3 = new ArrayList<Seccion>();
 		
 		Seccion seccion1 = new Seccion(2.0, 3.0, "Seccion 1 - Piso 1", mesa1);
-		secciones.add(seccion1);
+		secciones1Piso1.add(seccion1);
 		Seccion seccion2 = new Seccion(4.0, 6.0, "Seccion 2 - Piso 1", mesa2);
-		secciones.add(seccion2);
+		secciones1Piso1.add(seccion2);
 		Seccion seccion3 = new Seccion(8.0, 12.0, "Seccion 3 - Piso 1", mesa3);
-		secciones.add(seccion3);
+		secciones2Piso1.add(seccion3);
 		Seccion seccion4 = new Seccion(2.0, 3.0, "Seccion 1 - Piso 2", mesa4);
-		secciones.add(seccion4);
+		secciones1Piso2.add(seccion4);
 		Seccion seccion5 = new Seccion(4.0, 6.0, "Seccion 2 - Piso 2", mesa5);
-		secciones.add(seccion5);
+		secciones1Piso2.add(seccion5);
 		Seccion seccion6 = new Seccion(8.0, 12.0, "Seccion 3 - Piso 2", mesa6);
-		secciones.add(seccion6);
+		secciones2Piso2.add(seccion6);
 		Seccion seccion7 = new Seccion(2.0, 3.0, "Seccion 1 - Piso 3", mesa7);
-		secciones.add(seccion7);
+		secciones1Piso3.add(seccion7);
 		Seccion seccion8 = new Seccion(4.0, 6.0, "Seccion 2 - Piso 3", mesa8);
-		secciones.add(seccion8);
+		secciones1Piso3.add(seccion8);
 		Seccion seccion9 = new Seccion(8.0, 12.0, "Seccion 3 - Piso 3", mesa9);
-		secciones.add(seccion9);
+		secciones2Piso3.add(seccion9);
 		Seccion seccion10 = new Seccion(2.0, 3.0, "Seccion 4 - Piso 3", mesa10);
-		secciones.add(seccion10);
+		secciones2Piso3.add(seccion10);
+		
+		//Creating Sectores
+		ArrayList<Sector> sectoresPiso1 = new ArrayList<Sector>();
+		ArrayList<Sector> sectoresPiso2 = new ArrayList<Sector>();
+		ArrayList<Sector> sectoresPiso3 = new ArrayList<Sector>();
+		
+		
+		Sector sector1 = new Sector("Sector 1 - Piso 1", 10.0, 10.0, "Cerca", "Cerca", secciones1Piso1);
+		sectoresPiso1.add(sector1);
+		Sector sector2 = new Sector("Sector 2 - Piso 1", 12.0, 18.0, "Lejos", "Cerca", secciones2Piso1);
+		sectoresPiso1.add(sector2);
+		Sector sector3 = new Sector("Sector 1 - Piso 2", 14.0, 12.0, "Cerca", "Lejos", secciones1Piso2);
+		sectoresPiso2.add(sector3);
+		Sector sector4 = new Sector("Sector 2 - Piso 2", 12.0, 14.0, "Lejos", "Lejos", secciones2Piso2);
+		sectoresPiso2.add(sector4);
+		Sector sector5 = new Sector("Sector 1 - Piso 3", 10.0, 14.0, "Cerca", "Cerca", secciones1Piso3);
+		sectoresPiso3.add(sector5);
+		Sector sector6 = new Sector("Sector 2 - Piso 3", 13.0, 14.0, "Lejos", "Lejos", secciones2Piso3);
+		sectoresPiso3.add(sector6);
+		
+		
 		
 		try {
 		

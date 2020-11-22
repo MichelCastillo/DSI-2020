@@ -1,6 +1,6 @@
 package com.dsi.builder.back.business;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Sector {
 	
@@ -9,11 +9,31 @@ public class Sector {
 	private String nombre;
 	private String ubicacionPuerta;
 	private String ubicacionVentana;
-	private List<Seccion> secciones;
+	private ArrayList<Seccion> secciones = new ArrayList<Seccion>();
+	
+	public Sector(String nombre, double ancho, double largo, String ubicacionPuerta, String ubicacionVentana, ArrayList<Seccion> secciones) {
+		this.nombre = nombre;
+		this.ancho = ancho;
+		this.largo = largo;
+		this.ubicacionPuerta = ubicacionPuerta;
+		this.ubicacionVentana = ubicacionVentana;
+		secciones.forEach(pSecciones -> this.secciones.add(pSecciones));
+		
+	}
 	
 	public void armarPlano() {};
 	
-	public void ConocerSeccion() {};
+	public ArrayList<Seccion> ConocerSeccion() {
+		return secciones;
+	};
+	
+	public void addSeccion(Seccion seccion) {
+		this.secciones.add(seccion);
+	}
+	
+	public void addSecciones(ArrayList<Seccion> secciones) {
+		secciones.forEach(pSecciones -> this.secciones.add(pSecciones));
+	}
 	
 	public void buscarMesasDisp() {};
 	
