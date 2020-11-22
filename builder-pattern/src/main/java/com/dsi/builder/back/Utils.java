@@ -2,6 +2,7 @@ package com.dsi.builder.back;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.DateFormat;
 import java.text.ParseException;
 
 public class Utils {
@@ -23,6 +24,18 @@ public class Utils {
             System.out.println("Unexpected error during the conversion - " + ex);
         }
         return dt;
+    }
+    
+    public static Date parseTime(String time) throws ParseException {
+    	DateFormat formatter = new SimpleDateFormat("HH:mm");
+    	Date result;
+    	try {
+			result = formatter.parse(time);			
+		} catch (ParseException e) {
+			result = formatter.parse("00:00");
+		}
+    	
+    	return result;
     }
 
 }

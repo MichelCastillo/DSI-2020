@@ -20,7 +20,7 @@ public class HelloFX extends Application {
 
     @Override
     public void start(Stage stage) throws ParseException {
-    	
+    	/*
     	//Creating Pedido's states
     	EstadosPedido estado1 = EstadosPedido.CANCELADO;
 		EstadosPedido estado2 = EstadosPedido.NOTIFICADO;

@@ -13,21 +13,14 @@ public class Estado {
     private ArrayList<String> listOfStates = new ArrayList<String>(Arrays.asList("CREADO", "CANCELADO", "NOTIFICADO", 
     																			 "ENTREGADO", "PENDIENTE_PREPARACION", 
     																			 "EN_PREPARACION", "LISTO_PARA_SERVIR"));
-    private String nombre = "Unknown";
     
-    private EstadosPedido estadoPedido;
+    private ArrayList<String> listOfMesaStates = new ArrayList<String>(Arrays.asList("ABIERTA", "ACTIVA", "OCUPADA", "RESERVADA"));
+
+    private String nombre = "Unknown";
 
     // Metodos
     public String getNombre() {
         return this.nombre;
-    }
-    
-    public void setEstadoPedido(EstadosPedido estado) {
-    	this.estadoPedido = estado;
-    };
-    
-    public EstadosPedido getEstadoPedido() {
-    	return this.estadoPedido;
     }
     
     public Estado() {}
@@ -39,8 +32,15 @@ public class Estado {
     	} 	
     }
     
-    public void setNombre(String nombreEstado) {
+    public void setNombreEstadoPedido(String nombreEstado) {
     	if (listOfStates.stream()
+    			.anyMatch(stateElement -> stateElement.equalsIgnoreCase(nombreEstado))) {
+    		this.nombre = nombreEstado;
+    	} 	
+    }
+    
+    public void setNombreEstadoMesa(String nombreEstado) {
+    	if (listOfMesaStates.stream()
     			.anyMatch(stateElement -> stateElement.equalsIgnoreCase(nombreEstado))) {
     		this.nombre = nombreEstado;
     	} 	
