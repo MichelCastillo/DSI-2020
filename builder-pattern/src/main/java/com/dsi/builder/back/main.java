@@ -15,6 +15,7 @@ import com.dsi.builder.back.business.GestorReportesDeTiemposEnPedido;
 import com.dsi.builder.back.business.HistorialEstado;
 import com.dsi.builder.back.business.Mesa;
 import com.dsi.builder.back.business.Pedido;
+import com.dsi.builder.back.business.Seccion;
 
 public class main {
 
@@ -305,7 +306,29 @@ public class main {
 		Mesa mesa10 = new Mesa(8, 24.0, 3, 10, 1, estadoReservada);
 		mesas.add(mesa10);
 		
-		mesas.forEach(mesa -> System.out.println(mesa.toString()));
+		//Creating Secciones
+		ArrayList<Seccion> secciones = new ArrayList<Seccion>();
+		
+		Seccion seccion1 = new Seccion(2.0, 3.0, "Seccion 1 - Piso 1", mesa1);
+		secciones.add(seccion1);
+		Seccion seccion2 = new Seccion(4.0, 6.0, "Seccion 2 - Piso 1", mesa2);
+		secciones.add(seccion2);
+		Seccion seccion3 = new Seccion(8.0, 12.0, "Seccion 3 - Piso 1", mesa3);
+		secciones.add(seccion3);
+		Seccion seccion4 = new Seccion(2.0, 3.0, "Seccion 1 - Piso 2", mesa4);
+		secciones.add(seccion4);
+		Seccion seccion5 = new Seccion(4.0, 6.0, "Seccion 2 - Piso 2", mesa5);
+		secciones.add(seccion5);
+		Seccion seccion6 = new Seccion(8.0, 12.0, "Seccion 3 - Piso 2", mesa6);
+		secciones.add(seccion6);
+		Seccion seccion7 = new Seccion(2.0, 3.0, "Seccion 1 - Piso 3", mesa7);
+		secciones.add(seccion7);
+		Seccion seccion8 = new Seccion(4.0, 6.0, "Seccion 2 - Piso 3", mesa8);
+		secciones.add(seccion8);
+		Seccion seccion9 = new Seccion(8.0, 12.0, "Seccion 3 - Piso 3", mesa9);
+		secciones.add(seccion9);
+		Seccion seccion10 = new Seccion(2.0, 3.0, "Seccion 4 - Piso 3", mesa10);
+		secciones.add(seccion10);
 		
 		try {
 		

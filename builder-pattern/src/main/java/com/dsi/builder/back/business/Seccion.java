@@ -8,6 +8,14 @@ public class Seccion {
 	private String nombre;
 	private Mesa mesa;
 	
+	public Seccion(double x, double y, String nombre, Mesa mesa) {
+		this.coordenadaX = x;
+		this.coordenadaY = y;
+		calculateDimension();
+		this.nombre = nombre;
+		this.mesa = mesa;		
+	}
+	
 	/*
 	 * @return dimension as double (coordenadaX * coordenadaY)
 	 * */
