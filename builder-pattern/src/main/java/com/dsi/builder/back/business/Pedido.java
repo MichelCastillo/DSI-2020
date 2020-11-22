@@ -1,6 +1,7 @@
 package com.dsi.builder.back.business;
 
 import java.util.Date;
+import java.util.List;
 
 public class Pedido {
 	
@@ -8,15 +9,15 @@ public class Pedido {
 	private int cantComensales;
 	private Date fechaHoraPed;
 	private Factura factura;
-	private EstadosPedido estado;
+	private List<HistorialEstado> historial;
 	
-	public Pedido(int comensales, Date fechaHora, int numero, Factura factura){
+	public Pedido(int comensales, Date fechaHora, int numero, Factura factura, List<HistorialEstado> historial){
 		
 		this.cantComensales = comensales;
 		this.fechaHoraPed = fechaHora;
 		this.nroPedido = numero;
 		this.factura = factura;
-		this.estado = EstadosPedido.CREADO;
+		this.historial = historial;
 	}
 	
 	/**
@@ -68,21 +69,17 @@ public class Pedido {
 		return factura;
 	}
 	
-	public void conocerHistorialEstado() {
-		//TODO: Implement this method to retrieve a HistorialEstado object
+	/**
+	 * @return the historialEstado
+	 */
+	public HistorialEstado conocerHistorialEstado() {
+		return historial.get(historial.size() -1);
 	}
 
 	/**
-	 * @return the estado
+	 * @param historial the historial to add
 	 */
-	public EstadosPedido getEstado() {
-		return estado;
-	}
-
-	/**
-	 * @param estado the estado to set
-	 */
-	public void setEstado(EstadosPedido estado) {
-		this.estado = estado;
+	public void addHistorial(HistorialEstado historial) {
+		this.historial.add(historial);
 	}
 }

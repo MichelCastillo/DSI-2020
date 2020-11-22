@@ -18,6 +18,7 @@ import com.dsi.builder.back.business.GestorReportesDeTiemposEnPedido;
 
 public class main {
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
@@ -148,6 +149,13 @@ public class main {
 			myDate.add(Calendar.MINUTE, 5);
 			Factura factura10 = new Factura(myDate.getTime(), 10);
 			facturas.add(factura10);
+			
+			int diferencia = (int) ((myDate.getTime().getMinutes() - fechaDate.getMinutes()));
+			
+			System.out.println("Diferencia entre dos fechas: " + diferencia);
+			
+			Date fechaActual = new Date();
+			System.out.println(fechaActual);
 			
 			
 		} catch (ParseException e) {

@@ -3,18 +3,26 @@ package com.dsi.builder.back.business;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
+import java.util.Date;
 
 public class HistorialEstado {
 	
     // Atributos
-    private LocalDateTime fechaHoraFin;
-    private LocalDateTime fechaHoraInicio;
+    private Date fechaHoraFin;
+    private Date fechaHoraInicio;
     private Estado estado;
 
     // Metodos
-    public Long calcularDuracionEnEstado() {
-        ZoneOffset zona = ZoneOffset.of("Z");
-        return fechaHoraFin.toEpochSecond(zona) - fechaHoraFin.toEpochSecond(zona);
+    public int calcularDuracionEnEstado() {
+    	
+    	Date fechaActual = new Date();
+    	
+    	if(!(fechaHoraFin != null)) {
+    		return (int) (fechaHoraFin.getMinutes() - fechaHoraInicio.getMinutes());
+    	}
+    	
+    	return (int) (fechaActual.getMinutes() - fechaHoraInicio.getMinutes());
+    	
     }
 
     public Estado conocerEstado() {
@@ -34,20 +42,20 @@ public class HistorialEstado {
         return fechaHoraFin == null;
     }
 
-    public LocalDateTime getFechaHoraFin() {
+    public Date getFechaHoraFin() {
         return fechaHoraFin;
     }
 
-    public LocalDateTime getFechaHoraInicio() {
+    public Date getFechaHoraInicio() {
         return fechaHoraInicio;
     }
 
-    public HistorialEstado(LocalDateTime fechaHoraFin, Estado estado) {
+    public HistorialEstado(Date fechaHoraFin, Estado estado) {
         this.fechaHoraFin = fechaHoraFin;
         this.estado = estado;
     }
 
-    public HistorialEstado(LocalDateTime fechaHoraFin, LocalDateTime fechaHoraInicio, Estado estado) {
+    public HistorialEstado(Date fechaHoraFin, Date fechaHoraInicio, Estado estado) {
         this.fechaHoraFin = fechaHoraFin;
         this.fechaHoraInicio = fechaHoraInicio;
         this.estado = estado;
@@ -57,7 +65,7 @@ public class HistorialEstado {
         this.estado = estado;
     }
 
-    public void setFechaHoraFin(LocalDateTime fechaHoraFin) {
+    public void setFechaHoraFin(Date fechaHoraFin) {
         this.fechaHoraFin = fechaHoraFin;
     }
 
