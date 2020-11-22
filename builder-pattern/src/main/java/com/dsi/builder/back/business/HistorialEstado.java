@@ -79,6 +79,6 @@ public class HistorialEstado {
     	return "Historial de Estado: ------------"
     			+ "\n\tFecha y Hora de Inicio: " + this.fechaHoraInicio
     			+ "\n\tFecha y Hora de Fin: " + ((this.fechaHoraFin != null) ? fechaHoraFin : fechaActual + " - Still here")
-    			+ "\n\tREF: " + estado.toString(); 
+    			+ "\n\tREF: \n\t\t" + estado.toString() + "\n"; 
     }
 }

@@ -16,6 +16,7 @@ import com.dsi.builder.back.business.Estado;
 import com.dsi.builder.back.business.Factura;
 import com.dsi.builder.back.business.GestorReportesDeTiemposEnPedido;
 import com.dsi.builder.back.business.HistorialEstado;
+import com.dsi.builder.back.business.Pedido;
 
 public class main {
 
@@ -29,7 +30,7 @@ public class main {
 		//Initializing GestorReportesDeTiemposEnPedido - 
 		GestorReportesDeTiemposEnPedido gestor = new GestorReportesDeTiemposEnPedido();
 		
-		ArrayList<Estado> states = new ArrayList();
+		ArrayList<Estado> states = new ArrayList<Estado>();
 		
 		//Creating Pedido's states		
 		Estado estadoCreado = new Estado();
@@ -76,7 +77,7 @@ public class main {
 		
 		//"ABIERTA", "ACTIVA", "OCUPADA", "RESERVADA"
 		//Adding Mesa's states
-		ArrayList<Estado> mesaStates = new ArrayList();
+		ArrayList<Estado> mesaStates = new ArrayList<Estado>();
 				
 		Estado estadoAbierta = new Estado();
 		estadoAbierta.setAmbito("MESA");
@@ -166,6 +167,10 @@ public class main {
 		Date fechaDateInicio;
 		
 		ArrayList<HistorialEstado> historial = new ArrayList();
+		ArrayList<HistorialEstado> historial2 = new ArrayList();
+		ArrayList<HistorialEstado> historial3 = new ArrayList();
+		ArrayList<HistorialEstado> historial4 = new ArrayList();
+		ArrayList<HistorialEstado> historial5 = new ArrayList();
 		
 		try {
 			
@@ -173,33 +178,110 @@ public class main {
 			
 			fechaDateInicio = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH).parse(fechaInicio);
 			myDate.setTime(fechaDateInicio);
-			myDate.add(Calendar.MINUTE, 40);
-			HistorialEstado historialPedido1 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoCreado);
 			
-			historial.add(historialPedido1);
+			Pedido pedido1 = new Pedido(5, myDate.getTime(), 1, facturas.get(0));			
+			
+			myDate.add(Calendar.MINUTE, 40);
+			HistorialEstado historial1Pedido1 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoCreado);
+			
+			pedido1.addHistorial(historial1Pedido1);
 			
 			fechaDateInicio = myDate.getTime();
 			myDate.setTime(fechaDateInicio);
 			myDate.add(Calendar.MINUTE, 25);
 			HistorialEstado historial2Pedido1 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoPendiente);
 			
-			historial.add(historial2Pedido1);
+			pedido1.addHistorial(historial2Pedido1);
 			
 			fechaDateInicio = myDate.getTime();
 			myDate.setTime(fechaDateInicio);
 			myDate.add(Calendar.MINUTE, 31);
 			HistorialEstado historial3Pedido1 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoEnPreparacion);
 			
-			historial.add(historial3Pedido1);
+			pedido1.addHistorial(historial3Pedido1);
 			
 			fechaDateInicio = myDate.getTime();
 			myDate.setTime(fechaDateInicio);
-			myDate.add(Calendar.MINUTE, 31);
 			HistorialEstado historial4Pedido1 = new HistorialEstado(fechaDateInicio, estadoListoParaServir);
 			
-			historial.add(historial4Pedido1);
+			pedido1.addHistorial(historial4Pedido1);
 			
-			historial.forEach(historialElement -> System.out.println(historialElement.toString()));
+			//pedido1.getHistorial().forEach(historialElement -> System.out.println("\nHISTORIAL PEDIDO 1-------" + historialElement.toString()));
+			
+			System.out.println(pedido1.toString());
+			
+			//Pedido 2 - CREADO - PENDIENTE_PREPARACION
+			fechaInicio = "9/10/2020 21:00:00";
+			fechaDateInicio = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH).parse(fechaInicio);
+			myDate.setTime(fechaDateInicio);
+			myDate.add(Calendar.MINUTE, 40);
+			HistorialEstado historial1Pedido2 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoCreado);
+			
+			historial2.add(historial1Pedido2);
+			
+			fechaDateInicio = myDate.getTime();
+			myDate.setTime(fechaDateInicio);
+			HistorialEstado historial2Pedido2 = new HistorialEstado(fechaDateInicio, estadoPendiente);
+			
+			historial2.add(historial2Pedido2);
+			
+			//historial2.forEach(historialElement -> System.out.println("\nHISTORIAL PEDIDO 2-------" + historialElement.toString()));
+			
+			//Pedido 3 - CREADO - PENDIENTE_PREPARACION - EN_PREPARACION
+			fechaInicio = "8/10/2020 21:00:00";
+			fechaDateInicio = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH).parse(fechaInicio);
+			myDate.setTime(fechaDateInicio);
+			myDate.add(Calendar.MINUTE, 27);
+			HistorialEstado historial1Pedido3 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoCreado);
+			
+			historial3.add(historial1Pedido3);
+			
+			fechaDateInicio = myDate.getTime();
+			myDate.setTime(fechaDateInicio);
+			myDate.add(Calendar.MINUTE, 13);
+			HistorialEstado historial2Pedido3 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoPendiente);
+			
+			historial3.add(historial2Pedido3);
+			
+			fechaDateInicio = myDate.getTime();
+			myDate.setTime(fechaDateInicio);
+			HistorialEstado historial3Pedido3 = new HistorialEstado(fechaDateInicio, estadoEnPreparacion);
+			
+			historial3.add(historial3Pedido3);
+			
+			//historial3.forEach(historialElement -> System.out.println("\nHISTORIAL PEDIDO 3-------" + historialElement.toString()));
+			
+			//Pedido 4 - CREADO
+			fechaInicio = "11/10/2020 21:30:00";
+			fechaDateInicio = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH).parse(fechaInicio);
+			myDate.setTime(fechaDateInicio);
+			HistorialEstado historial1Pedido4 = new HistorialEstado(fechaDateInicio, estadoCreado);
+			
+			historial4.add(historial1Pedido4);
+			
+			//historial4.forEach(historialElement -> System.out.println("\nHISTORIAL PEDIDO 4-------" + historialElement.toString()));
+			
+			//Pedido 5 - CREADO - CANCELADO
+			fechaInicio = "11/10/2020 21:00:00";
+			fechaDateInicio = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH).parse(fechaInicio);
+			myDate.setTime(fechaDateInicio);
+			myDate.add(Calendar.MINUTE, 27);
+			HistorialEstado historial1Pedido5 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoCreado);
+			
+			historial5.add(historial1Pedido5);
+			
+			fechaDateInicio = myDate.getTime();
+			myDate.setTime(fechaDateInicio);
+			myDate.add(Calendar.MINUTE, 10);
+			HistorialEstado historial2Pedido5 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoCancelado);
+			
+			historial5.add(historial2Pedido5);
+			
+			//historial5.forEach(historialElement -> System.out.println("\nHISTORIAL PEDIDO 5-------" + historialElement.toString()));
+			
+			
+			
+			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
