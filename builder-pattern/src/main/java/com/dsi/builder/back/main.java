@@ -380,14 +380,23 @@ public class main {
 			
 			if (gestor.validatePeriod(initialDate, finalDate)) {
 				
+				//Setting period
 				gestor.setPeriodInitialDate(initialDate);
 				gestor.setPeriodInitialDate(finalDate);
 				
+				//Adding pisosSelecc
+				gestor.addPisosSeleccionados(pisos);
+				
+				//Adding sectoresSelecc
+				pisos.forEach(ePiso -> gestor.addSectoresSeleccionados(ePiso.getSectores()));
+				
+				//System.out.println(gestor.getSectoresSelecc().toString());
+				
 				//Displaying all available states for Pedidos
-				states.forEach(stateElement -> System.out.println(stateElement.toString()));
+				//states.forEach(stateElement -> System.out.println(stateElement.toString()));
 				
 				//Displaying all available Pisos
-				pisos.forEach(pisoElement -> System.out.println(pisoElement.visualizarPiso()));
+				//pisos.forEach(pisoElement -> System.out.println(pisoElement.visualizarPiso()));
 				
 			} else {
 				

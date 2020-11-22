@@ -71,4 +71,8 @@ public class Piso {
         //}
 
     }
+    
+    public ArrayList<Sector> getSectores() {
+    	return this.sectores;
+    }
 }
