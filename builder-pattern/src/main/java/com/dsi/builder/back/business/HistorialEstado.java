@@ -1,27 +1,27 @@
 package com.dsi.builder.back.business;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneOffset;
+
 import java.util.Date;
+
+import com.dsi.builder.back.Utils;
 
 public class HistorialEstado {
 	
     // Atributos
+	private Date fechaActual;
     private Date fechaHoraFin;
     private Date fechaHoraInicio;
     private Estado estado;
 
     // Metodos
-    public int calcularDuracionEnEstado() {
-    	
-    	Date fechaActual = new Date();
+    public long calcularDuracionEnEstado() {
+    	this.fechaActual = new Date();
     	
     	if(!(fechaHoraFin != null)) {
-    		return (int) (fechaHoraFin.getMinutes() - fechaHoraInicio.getMinutes());
+    		return Utils.calculateMinDiference(fechaHoraInicio, fechaHoraFin);
     	}
     	
-    	return (int) (fechaActual.getMinutes() - fechaHoraInicio.getMinutes());
+    	return Utils.calculateMinDiference(fechaHoraInicio, fechaActual);
     	
     }
 
@@ -50,12 +50,12 @@ public class HistorialEstado {
         return fechaHoraInicio;
     }
 
-    public HistorialEstado(Date fechaHoraFin, Estado estado) {
-        this.fechaHoraFin = fechaHoraFin;
+    public HistorialEstado(Date fechaHoraInicio, Estado estado) {
+        this.fechaHoraInicio = fechaHoraInicio;
         this.estado = estado;
     }
 
-    public HistorialEstado(Date fechaHoraFin, Date fechaHoraInicio, Estado estado) {
+    public HistorialEstado(Date fechaHoraInicio, Date fechaHoraFin, Estado estado) {
         this.fechaHoraFin = fechaHoraFin;
         this.fechaHoraInicio = fechaHoraInicio;
         this.estado = estado;
@@ -70,5 +70,15 @@ public class HistorialEstado {
     }
 
     public void setListoParaServir() {
+    }
+    
+    @Override
+    public String toString() {
+    	this.fechaActual = new Date();
+    	
+    	return "Historial de Estado: ------------"
+    			+ "\n\tFecha y Hora de Inicio: " + this.fechaHoraInicio
+    			+ "\n\tFecha y Hora de Fin: " + ((this.fechaHoraFin != null) ? fechaHoraFin : fechaActual + " - Still here")
+    			+ "\n\tREF: " + estado.toString(); 
     }
 }

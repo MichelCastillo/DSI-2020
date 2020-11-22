@@ -37,5 +37,9 @@ public class Utils {
     	
     	return result;
     }
+    
+    public static long calculateMinDiference(Date initialDate, Date finalDate) {
+    	return Math.abs(finalDate.getTime() - initialDate.getTime()) / (1000 * 60);
+    }
 
 }

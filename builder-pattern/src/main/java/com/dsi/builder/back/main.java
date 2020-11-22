@@ -15,6 +15,7 @@ import java.util.Scanner;
 import com.dsi.builder.back.business.Estado;
 import com.dsi.builder.back.business.Factura;
 import com.dsi.builder.back.business.GestorReportesDeTiemposEnPedido;
+import com.dsi.builder.back.business.HistorialEstado;
 
 public class main {
 
@@ -150,19 +151,61 @@ public class main {
 			Factura factura10 = new Factura(myDate.getTime(), 10);
 			facturas.add(factura10);
 			
-			int diferencia = (int) ((myDate.getTime().getMinutes() - fechaDate.getMinutes()));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			System.out.println("An error ocurred when Facturas were been created - " + e);
+		}
+		
+		//Creating Historial Estados
+		
+		Calendar myDate = new GregorianCalendar();
+		
+		
+		
+		String fechaInicio = "10/10/2020 20:00:00";
+		Date fechaDateInicio;
+		
+		ArrayList<HistorialEstado> historial = new ArrayList();
+		
+		try {
 			
-			System.out.println("Diferencia entre dos fechas: " + diferencia);
+			//Pedido 1 - CREADO - PENDIENTE_PREPARACION - EN_PREPARACION - LISTO_PARA_SERVIR
 			
-			Date fechaActual = new Date();
-			System.out.println(fechaActual);
+			fechaDateInicio = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH).parse(fechaInicio);
+			myDate.setTime(fechaDateInicio);
+			myDate.add(Calendar.MINUTE, 40);
+			HistorialEstado historialPedido1 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoCreado);
 			
+			historial.add(historialPedido1);
 			
+			fechaDateInicio = myDate.getTime();
+			myDate.setTime(fechaDateInicio);
+			myDate.add(Calendar.MINUTE, 25);
+			HistorialEstado historial2Pedido1 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoPendiente);
+			
+			historial.add(historial2Pedido1);
+			
+			fechaDateInicio = myDate.getTime();
+			myDate.setTime(fechaDateInicio);
+			myDate.add(Calendar.MINUTE, 31);
+			HistorialEstado historial3Pedido1 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoEnPreparacion);
+			
+			historial.add(historial3Pedido1);
+			
+			fechaDateInicio = myDate.getTime();
+			myDate.setTime(fechaDateInicio);
+			myDate.add(Calendar.MINUTE, 31);
+			HistorialEstado historial4Pedido1 = new HistorialEstado(fechaDateInicio, estadoListoParaServir);
+			
+			historial.add(historial4Pedido1);
+			
+			historial.forEach(historialElement -> System.out.println(historialElement.toString()));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			
+		
+		
 		
 		try {
 		
