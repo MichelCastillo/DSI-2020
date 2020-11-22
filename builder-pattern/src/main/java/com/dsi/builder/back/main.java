@@ -13,6 +13,7 @@ import com.dsi.builder.back.business.Estado;
 import com.dsi.builder.back.business.Factura;
 import com.dsi.builder.back.business.GestorReportesDeTiemposEnPedido;
 import com.dsi.builder.back.business.HistorialEstado;
+import com.dsi.builder.back.business.Mesa;
 import com.dsi.builder.back.business.Pedido;
 
 public class main {
@@ -160,8 +161,15 @@ public class main {
 		
 		
 		
-		String fechaInicio = "10/10/2020 20:00:00";
-		Date fechaDateInicio;		
+		String fechaInicio = "19/11/2020 20:00:00";
+		Date fechaDateInicio;
+		
+		Pedido pedido1 = null;
+		Pedido pedido2 = null;;
+		Pedido pedido3 = null;;
+		Pedido pedido4 = null;;
+		Pedido pedido5 = null;;
+		
 		try {
 			
 			//Pedido 1 - CREADO - PENDIENTE_PREPARACION - EN_PREPARACION - LISTO_PARA_SERVIR
@@ -169,7 +177,7 @@ public class main {
 			fechaDateInicio = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH).parse(fechaInicio);
 			myDate.setTime(fechaDateInicio);
 			
-			Pedido pedido1 = new Pedido(5, myDate.getTime(), 1, facturas.get(0));			
+			pedido1 = new Pedido(5, myDate.getTime(), 1, facturas.get(0));			
 			
 			myDate.add(Calendar.MINUTE, 40);
 			HistorialEstado historial1Pedido1 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoCreado);
@@ -197,12 +205,12 @@ public class main {
 			pedido1.addHistorial(historial4Pedido1);
 			
 			//Pedido 2 - CREADO - PENDIENTE_PREPARACION
-			fechaInicio = "9/10/2020 21:00:00";
+			fechaInicio = "20/11/2020 21:00:00";
 			fechaDateInicio = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH).parse(fechaInicio);
-			
-			Pedido pedido2 = new Pedido(3, myDate.getTime(), 2, facturas.get(1));
-			
 			myDate.setTime(fechaDateInicio);
+			
+			pedido2 = new Pedido(3, myDate.getTime(), 2, facturas.get(1));
+			
 			myDate.add(Calendar.MINUTE, 40);
 			HistorialEstado historial1Pedido2 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoCreado);
 			
@@ -215,12 +223,12 @@ public class main {
 			pedido2.addHistorial(historial2Pedido2);
 			
 			//Pedido 3 - CREADO - PENDIENTE_PREPARACION - EN_PREPARACION
-			fechaInicio = "8/10/2020 21:00:00";
+			fechaInicio = "19/11/2020 21:00:00";
 			fechaDateInicio = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH).parse(fechaInicio);
-			
-			Pedido pedido3 = new Pedido(2, myDate.getTime(), 3, facturas.get(2));
-			
 			myDate.setTime(fechaDateInicio);
+
+			pedido3 = new Pedido(2, myDate.getTime(), 3, facturas.get(2));
+			
 			myDate.add(Calendar.MINUTE, 27);
 			HistorialEstado historial1Pedido3 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoCreado);
 			
@@ -240,23 +248,23 @@ public class main {
 			pedido3.addHistorial(historial3Pedido3);
 			
 			//Pedido 4 - CREADO
-			fechaInicio = "11/10/2020 21:30:00";
+			fechaInicio = "23/11/2020 21:30:00";
 			fechaDateInicio = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH).parse(fechaInicio);
-			
-			Pedido pedido4 = new Pedido(5, myDate.getTime(), 4, facturas.get(3));
-			
 			myDate.setTime(fechaDateInicio);
+
+			pedido4 = new Pedido(5, myDate.getTime(), 4, facturas.get(3));
+			
 			HistorialEstado historial1Pedido4 = new HistorialEstado(fechaDateInicio, estadoCreado);
 			
 			pedido4.addHistorial(historial1Pedido4);
 			
 			//Pedido 5 - CREADO - CANCELADO
-			fechaInicio = "11/10/2020 21:00:00";
+			fechaInicio = "24/11/2020 21:00:00";
 			fechaDateInicio = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH).parse(fechaInicio);
+			myDate.setTime(fechaDateInicio);			
 			
-			Pedido pedido5 = new Pedido(3, myDate.getTime(), 5, facturas.get(4));
+			pedido5 = new Pedido(3, myDate.getTime(), 5, facturas.get(4));
 			
-			myDate.setTime(fechaDateInicio);
 			myDate.add(Calendar.MINUTE, 27);
 			HistorialEstado historial1Pedido5 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoCreado);
 			
@@ -267,16 +275,37 @@ public class main {
 			myDate.add(Calendar.MINUTE, 10);
 			HistorialEstado historial2Pedido5 = new HistorialEstado(fechaDateInicio, myDate.getTime(), estadoCancelado);
 			
-			pedido5.addHistorial(historial2Pedido5);
-			
-			System.out.println(pedido5.toString());			
+			pedido5.addHistorial(historial2Pedido5);		
 			
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("An error ocurred creating Pedidos - Error: " + e);
 		}
 		
+		//Creating Mesas
+		ArrayList<Mesa> mesas = new ArrayList<Mesa>();
+				
+		Mesa mesa1 = new Mesa(10, 30.0, 1, 1, 1, estadoOcupada, pedido1);
+		mesas.add(mesa1);
+		Mesa mesa2 = new Mesa(7, 22.0, 1, 2, 1, estadoOcupada, pedido2);
+		mesas.add(mesa2);
+		Mesa mesa3 = new Mesa(8, 24.0, 1, 3, 1, estadoActiva);
+		mesas.add(mesa3);
+		Mesa mesa4 = new Mesa(8, 24.0, 2, 4, 1, estadoOcupada, pedido3);
+		mesas.add(mesa4);
+		Mesa mesa5 = new Mesa(5, 15.0, 2, 5, 1, estadoActiva);
+		mesas.add(mesa5);
+		Mesa mesa6 = new Mesa(6, 18.0, 2, 6, 1, estadoReservada);
+		mesas.add(mesa6);
+		Mesa mesa7 = new Mesa(9, 27.0, 3, 7, 1, estadoOcupada, pedido4);
+		mesas.add(mesa7);
+		Mesa mesa8 = new Mesa(6, 18.0, 3, 8, 1, estadoActiva);
+		mesas.add(mesa8);
+		Mesa mesa9 = new Mesa(7, 21.0, 3, 9, 1, estadoOcupada, pedido5);
+		mesas.add(mesa9);
+		Mesa mesa10 = new Mesa(8, 24.0, 3, 10, 1, estadoReservada);
+		mesas.add(mesa10);
 		
+		mesas.forEach(mesa -> System.out.println(mesa.toString()));
 		
 		try {
 		

@@ -1,5 +1,6 @@
 package com.dsi.builder.back.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mesa {
@@ -10,7 +11,42 @@ public class Mesa {
 	private int numero;
 	private int ordenEnPlano;
 	private Estado estado;
-	private List<Pedido> pedidos;
+	private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+	
+	public Mesa(int capacidadComensales, double espacioQueOcupa, int filaEnPlano, int numero, int ordenEnPlano, Estado estado, Pedido pedido) {
+		
+		this.capacidadComensales = capacidadComensales;
+		this.espacioQueOcupa = espacioQueOcupa;
+		this.filaEnPlano = filaEnPlano;
+		this.numero = numero;
+		this.ordenEnPlano = ordenEnPlano;
+		this.estado = estado;
+		this.pedidos.add(pedido);		
+	}
+	
+	public Mesa(int capacidadComensales, double espacioQueOcupa, int filaEnPlano, int numero, int ordenEnPlano, Estado estado) {
+		
+		this.capacidadComensales = capacidadComensales;
+		this.espacioQueOcupa = espacioQueOcupa;
+		this.filaEnPlano = filaEnPlano;
+		this.numero = numero;
+		this.ordenEnPlano = ordenEnPlano;
+		this.estado = estado;
+	}
+	
+	@Override
+	public String toString() {
+    	return "Mesa N°: " + this.numero + "--------------"
+    			+ "\n\tCapacidad: " + this.capacidadComensales
+    			+ "\n\tFila: " + this.filaEnPlano
+    			+ "\n\tOrden: " + this.ordenEnPlano
+    			+ "\n\tREF: " + this.estado
+    			+ "\n\tREF: " + this.pedidos.toString();
+    }
+	
+	public void addPedido(Pedido pedido) {
+		this.pedidos.add(pedido);
+	}
 	
 	public void buscarPedCumpFiltros() {}
 	
@@ -38,10 +74,6 @@ public class Mesa {
 	
 	public int getNumero() {
 		return this.numero;
-	}
-	
-	public String toString() {
-		return "";
 	}
 	
 	public void mostrarNumero() {}

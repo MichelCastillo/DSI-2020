@@ -16,7 +16,7 @@ public class Factura {
 	public Factura(Date fechaYHora, int numeroFactura) throws ParseException {	
 		this.fechaYHora = fechaYHora;
 		this.numero = numeroFactura;
-		this.total = Math.random()*100 + 1;
+		this.total = Math.round((Math.random()*100 + 1) * Math.pow(10, 2)) / Math.pow(10, 2);
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class Factura {
 	public String toString() {
 		return "Factura: " + this.numero + "--------------"
 				+ "\n\tFecha: " + this.fechaYHora
-				+ "\n\tTotal: " + this.total + "\n";
+				+ "\n\tTotal: $" + this.total + "\n";
 	};
 	
 	
