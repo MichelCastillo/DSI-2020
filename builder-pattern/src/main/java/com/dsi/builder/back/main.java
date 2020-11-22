@@ -384,7 +384,7 @@ public class main {
 				gestor.setPeriodInitialDate(finalDate);
 				
 				//Displaying all available states for Pedidos
-				states.forEach(stateElement -> System.out.print(stateElement.toString()));
+				states.forEach(stateElement -> System.out.println(stateElement.toString()));
 				
 				//Displaying all available Pisos
 				pisos.forEach(pisoElement -> System.out.println(pisoElement.visualizarPiso()));

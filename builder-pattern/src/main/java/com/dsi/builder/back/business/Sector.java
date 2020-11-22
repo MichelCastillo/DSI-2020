@@ -69,12 +69,12 @@ public class Sector {
 	
 	@Override
 	public String toString() {
-		return "\n\tSector: " + this.nombre + "------"
-				+ "\n\t\tAncho: " + this.ancho
-				+ "\n\t\tLargo: " + this.largo
-				+ "\n\t\tUbicación Puerta: " + this.ubicacionPuerta
-				+ "\n\t\tUbicacion Ventana: " + this.ubicacionVentana
-				//+ "\n\t\tSecciones: " + this.secciones.toString()
+		return "\n\t\tSector-----------------------------------------------------------------------------------------"
+				+ "\n\t\t\tAncho: " + this.ancho
+				+ "\n\t\t\tLargo: " + this.largo
+				+ "\n\t\t\tUbicación Puerta: " + this.ubicacionPuerta
+				+ "\n\t\t\tUbicacion Ventana: " + this.ubicacionVentana
+				+ "\n\t\t\tSecciones: " + this.secciones.toString()
 				;
 	};
 	

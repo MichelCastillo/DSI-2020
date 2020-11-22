@@ -14,11 +14,12 @@ public class Pedido {
 	
 	 @Override
 	 public String toString() {	    	
-	    return "Pedido N°: " + this.nroPedido + "------------"
-	    		+ "\n\tCantidad de Comensales: " + this.cantComensales
-	    		+ "\n\tFecha y Hora: " + this.fechaHoraPed
-	    		+ "\n\tREF: " + factura.toString()
-	    		+ "\n\tREF: " + historial.toString(); 
+	    return "N°: " + this.nroPedido + "------------------------------------------"
+	    		+ "\n\t\t\t\t\t\t\t\tCantidad de Comensales: " + this.cantComensales
+	    		+ "\n\t\t\t\t\t\t\t\tFecha y Hora: " + this.fechaHoraPed
+	    		+ "\n\t\t\t\t\t\t\t\tFactura " + factura.toString()
+	    		+ "\n\t\t\t\t\t\t\t\tHistorial Estados: " + historial.toString()
+	    		; 
 	 }
 	
 	public Pedido(int comensales, Date fechaHora, int numero, Factura factura){

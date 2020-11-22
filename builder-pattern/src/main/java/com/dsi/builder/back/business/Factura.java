@@ -56,9 +56,9 @@ public class Factura {
 
 	@Override
 	public String toString() {
-		return "Factura: " + this.numero + "--------------"
-				+ "\n\tFecha: " + this.fechaYHora
-				+ "\n\tTotal: $" + this.total + "\n";
+		return "N°: " + this.numero + "----------------------------------"
+				+ "\n\t\t\t\t\t\t\t\t\tFecha: " + this.fechaYHora
+				+ "\n\t\t\t\t\t\t\t\t\tTotal: $" + this.total;
 	};
 	
 	

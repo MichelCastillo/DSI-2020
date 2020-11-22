@@ -36,12 +36,13 @@ public class Mesa {
 	
 	@Override
 	public String toString() {
-    	return "Mesa N°: " + this.numero + "--------------"
-    			+ "\n\tCapacidad: " + this.capacidadComensales
-    			+ "\n\tFila: " + this.filaEnPlano
-    			+ "\n\tOrden: " + this.ordenEnPlano
-    			+ "\n\tREF: " + this.estado
-    			+ "\n\tREF: " + this.pedidos.toString();
+    	return "\n\t\t\t\t\t\tMesa N°: " + this.numero + "-----------------------------------------------------"
+    			+ "\n\t\t\t\t\t\t\tCapacidad: " + this.capacidadComensales
+    			+ "\n\t\t\t\t\t\t\tFila: " + this.filaEnPlano
+    			+ "\n\t\t\t\t\t\t\tOrden: " + this.ordenEnPlano
+    			+ "\n\t\t\t\t\t\t\tEstado: " + this.estado
+    			+ "\n\t\t\t\t\t\t\tPedido " + this.pedidos.toString()
+    			;
     }
 	
 	public void addPedido(Pedido pedido) {

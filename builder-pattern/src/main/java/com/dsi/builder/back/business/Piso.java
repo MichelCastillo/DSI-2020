@@ -20,10 +20,10 @@ public class Piso {
     }
     
     public String visualizarPiso() {
-    	return "Piso: ----------"
+    	return "Piso: ---------------------------------------------------------------------------------------------------------"
     			+ "\n\tNúmero: " + this.numero + ","
     			+ "\n\tCantidad de Sectores: " + this.sectores.size()
-    			+ "\n\tSectores: \n\t" + this.sectores.toString();
+    			+ "\n\tSectores: " + this.sectores.toString();
     }
     
     public void addSectores(ArrayList<Sector> sectores) {

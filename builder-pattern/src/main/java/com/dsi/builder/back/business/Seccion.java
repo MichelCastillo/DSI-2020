@@ -60,10 +60,11 @@ public class Seccion {
 	
 	@Override
 	public String toString() {
-		return "Seccion: " + this.nombre + "------"
-				+ "\n\tCoordenada X: " + this.coordenadaX
-				+ "\n\tCoordenada Y: " + this.coordenadaY
-				+ "\n\tDimensión: " + this.dimension
-				+ "\n\tMesa: " + this.mesa.toString();
+		return "\n\t\t\t\tSeccion: ----------------------------------------------------------------------\n\t\t\t\tNombre: " + this.nombre
+				+ "\n\t\t\t\tCoordenada X: " + this.coordenadaX
+				+ "\n\t\t\t\tCoordenada Y: " + this.coordenadaY
+				+ "\n\t\t\t\tDimensión: " + this.dimension
+				+ "\n\t\t\t\tMesa: " + this.mesa.toString()
+				;
 	};
 }

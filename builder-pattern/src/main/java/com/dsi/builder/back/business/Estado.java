@@ -115,9 +115,9 @@ public class Estado {
     }
     
     public String toString() {
-    	return "Estado-------------- \n\t"
-    			+ "\t\tAmbito: " + this.ambito + "\n\t"
-    			+ "\t\tNombre: " + this.nombre + "\n";
+    	return "-----------------------------------------------"
+    			+ "\n\t\t\t\t\t\t\t\tAmbito: " + this.ambito
+    			+ "\n\t\t\t\t\t\t\t\tNombre: " + this.nombre;
     }
     
 }
