@@ -1,10 +1,20 @@
 package com.dsi.builder.back.business;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Estado {
 
     // Atributos
-    private String ambito;
-    private String nombre;
+	
+	private ArrayList<String> listOfAmbitos = new ArrayList<String>(Arrays.asList("PEDIDO", "RESERVA", "MESA"));
+    private String ambito = "Unknown";
+    
+    private ArrayList<String> listOfStates = new ArrayList<String>(Arrays.asList("CREADO", "CANCELADO", "NOTIFICADO", 
+    																			 "ENTREGADO", "PENDIENTE_PREPARACION", 
+    																			 "EN_PREPARACION", "LISTO_PARA_SERVIR"));
+    private String nombre = "Unknown";
+    
     private EstadosPedido estadoPedido;
 
     // Metodos
@@ -19,10 +29,25 @@ public class Estado {
     public EstadosPedido getEstadoPedido() {
     	return this.estadoPedido;
     }
-
-    public Estado(String ambito, String nombre) {
-        this.ambito = ambito;
-        this.nombre = nombre;
+    
+    public Estado() {}
+    
+    public void setAmbito(String ambito) {
+    	if (listOfAmbitos.stream()
+    			.anyMatch(ambitoElement -> ambito.equalsIgnoreCase(ambitoElement))) {
+    		this.ambito = ambito;
+    	} 	
+    }
+    
+    public void setNombre(String nombreEstado) {
+    	if (listOfStates.stream()
+    			.anyMatch(stateElement -> stateElement.equalsIgnoreCase(nombreEstado))) {
+    		this.nombre = nombreEstado;
+    	} 	
+    }
+    
+    public String getAmbito() {
+    	return this.ambito;
     }
 
     public boolean esAmbitoPedido() {
@@ -87,6 +112,12 @@ public class Estado {
 
     public boolean esNotificado() {
         return nombre.equals("Notificado");
+    }
+    
+    public String toString() {
+    	return "Estado-------------- \n\t"
+    			+ "Ambito: " + this.ambito + "\n\t"
+    			+ "Nombre: " + this.nombre + "\n";
     }
     
 }
