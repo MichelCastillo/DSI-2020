@@ -1,15 +1,37 @@
 package com.dsi.builder.back.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Piso {
     private int numero;
-    private List<Sector> sectores;
+    private ArrayList<Sector> sectores = new ArrayList<Sector>();
 
 
-    public Piso(int numero, List<Sector> sectores) {
+    public Piso(int numero, ArrayList<Sector> sectores) {
         this.numero = numero;
-        this.sectores = sectores;
+        sectores.forEach(pSectores -> this.sectores.add(pSectores));
+    }
+    
+    @Override
+    public String toString() {
+    	return "Piso N°: " + this.numero
+    		+ "\n\tREF: \n\t\t" + sectores.toString();
+    }
+    
+    public String visualizarPiso() {
+    	return "Piso: ----------"
+    			+ "\n\tNúmero: " + this.numero + ","
+    			+ "\n\tCantidad de Sectores: " + this.sectores.size()
+    			+ "\n\tSectores: \n\t" + this.sectores.toString();
+    }
+    
+    public void addSectores(ArrayList<Sector> sectores) {
+    	sectores.forEach(pSectores -> this.sectores.add(pSectores));
+    }
+    
+    public void addSector(Sector sector) {
+    	this.sectores.add(sector);
     }
 
     public int getNumero() {

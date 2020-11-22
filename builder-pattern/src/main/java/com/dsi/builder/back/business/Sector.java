@@ -59,14 +59,23 @@ public class Sector {
 	
 	public void mostrarDatos() {};
 	
+	public String visualizarSector() {
+		return "\n\t\tSector-----------"
+				+ "\n\t\t\tAncho: " + this.ancho
+				+ "\n\t\t\tLargo: " + this.largo
+				+ "\n\t\t\tUbicación Puerta: " + this.ubicacionPuerta
+				+ "\n\t\t\tUbicacion Ventana: " + this.ubicacionVentana;
+	}
+	
 	@Override
 	public String toString() {
-		return "Sector: " + this.nombre + "------"
-				+ "\n\tAncho: " + this.ancho
-				+ "\n\tLargo: " + this.largo
-				+ "\n\tUbicación Puerta: " + this.ubicacionPuerta
-				+ "\n\tUbicacion Ventana: " + this.ubicacionVentana
-				+ "\n\tSecciones: " + this.secciones.toString();
+		return "\n\tSector: " + this.nombre + "------"
+				+ "\n\t\tAncho: " + this.ancho
+				+ "\n\t\tLargo: " + this.largo
+				+ "\n\t\tUbicación Puerta: " + this.ubicacionPuerta
+				+ "\n\t\tUbicacion Ventana: " + this.ubicacionVentana
+				//+ "\n\t\tSecciones: " + this.secciones.toString()
+				;
 	};
 	
 }

@@ -15,6 +15,7 @@ import com.dsi.builder.back.business.GestorReportesDeTiemposEnPedido;
 import com.dsi.builder.back.business.HistorialEstado;
 import com.dsi.builder.back.business.Mesa;
 import com.dsi.builder.back.business.Pedido;
+import com.dsi.builder.back.business.Piso;
 import com.dsi.builder.back.business.Seccion;
 import com.dsi.builder.back.business.Sector;
 
@@ -355,7 +356,15 @@ public class main {
 		Sector sector6 = new Sector("Sector 2 - Piso 3", 13.0, 14.0, "Lejos", "Lejos", secciones2Piso3);
 		sectoresPiso3.add(sector6);
 		
+		//Creating Pisos
+		ArrayList<Piso> pisos = new ArrayList<Piso>();
 		
+		Piso piso1 = new Piso(1, sectoresPiso1);
+		pisos.add(piso1);
+		Piso piso2 = new Piso(2, sectoresPiso2);
+		pisos.add(piso2);
+		Piso piso3 = new Piso(3, sectoresPiso3);
+		pisos.add(piso3);
 		
 		try {
 		
@@ -377,11 +386,8 @@ public class main {
 				//Displaying all available states for Pedidos
 				states.forEach(stateElement -> System.out.print(stateElement.toString()));
 				
-				//Displaying all available states for Mesas
-				mesaStates.forEach(stateElement -> System.out.print(stateElement.toString()));
-				
-				//Displaying all facturas
-				facturas.forEach(factura -> System.out.print(factura.toString()));
+				//Displaying all available Pisos
+				pisos.forEach(pisoElement -> System.out.println(pisoElement.visualizarPiso()));
 				
 			} else {
 				
