@@ -2,13 +2,10 @@ package com.dsi.builder.back;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -20,7 +17,7 @@ import com.dsi.builder.back.business.Pedido;
 
 public class main {
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
@@ -104,7 +101,7 @@ public class main {
 		mesaStates.add(estadoReservada);
 		
 		//Creating Facturas
-		ArrayList<Factura> facturas = new ArrayList();
+		ArrayList<Factura> facturas = new ArrayList<Factura>();
 		
 		try {
 			
