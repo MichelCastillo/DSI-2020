@@ -394,13 +394,16 @@ public class main {
 				gestor.addEstadosSeleccionados(states);
 				
 				//Getting tuplas
-				gestor.getTiemposPorSector(initialDate, finalDate);
+				//gestor.getTiemposPorSector(initialDate, finalDate);
+				gestor.getTiemposSector(initialDate, finalDate, sector1);
 				
 				//Getting Times per Sector
-				gestor.calcularTiemposPorSector(gestor.getTuplas());
+				gestor.calcularTiemposSectores(gestor.getTuplas());
 				
 				//Displaying Times per Sector
-				System.out.println(gestor.getResults());
+				System.out.println(gestor.getResults().toString());
+				
+				Utils.createPDF();				
 			
 				//Displaying all available states for Pedidos
 				//states.forEach(stateElement -> System.out.println(stateElement.toString()));

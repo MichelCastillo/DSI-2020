@@ -1,5 +1,7 @@
 package com.dsi.builder.back.pattern;
 
+import java.util.ArrayList;
+
 import com.dsi.builder.back.pattern.GeneradorArchivosPDF;
 
 /**
@@ -31,9 +33,8 @@ public class ConstructorPDFReporte implements IConstructorReporte {
 		
 	}
 
-	public void construirCuerpo(String[] estados, String[] vectores, double[][] tiempoPermProm,
-			double[][] tiempoPermMax, double[][] tiempoPermMin) {
-		reporte.setCuerpo(estados, vectores, tiempoPermProm, tiempoPermMax, tiempoPermMin);		
+	public void construirCuerpo(String estados, String vectores, ArrayList<ArrayList<String>> resultados) {
+		reporte.setCuerpo(estados, vectores, resultados);		
 	}
 
 	public void construirEncabezado(String titulo, String fechaInicio, String fechaFin) {

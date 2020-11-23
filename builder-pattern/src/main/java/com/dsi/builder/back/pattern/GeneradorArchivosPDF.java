@@ -1,7 +1,20 @@
 package com.dsi.builder.back.pattern;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import com.dsi.builder.back.business.EstadosPedido;
 
@@ -23,11 +36,9 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	private String titulo;
 	
 	//Cuerpo
-	private String[] estados;
-	private String[] vectores;
-	private double[][] tiempoPermProm;
-	private double[][] tiempoPermMax;
-	private double[][] tiempoPermMin;	
+	private String estados;
+	private String vectores;
+	private ArrayList<ArrayList<String>> resultados;	
 	
 	//Pie
 	private String fechaHoraGeneracion;
@@ -57,22 +68,17 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 		reporteEncabezado.add(fechaFin);
 	};
 	
-	public void setCuerpo(String[] estados, String[] vectores, double[][] tiempoPermProm,
-			double[][] tiempoPermMax, double[][] tiempoPermMin) {
+	public void setCuerpo(String estados, String vectores, ArrayList<ArrayList<String>> resultados) {
 		
 		//Setting Cuerpo attributes
 		this.estados = estados;
 		this.vectores = vectores;
-		this.tiempoPermProm = tiempoPermProm;
-		this.tiempoPermMax = tiempoPermMax;
-		this.tiempoPermMin = tiempoPermMin;
+		this.resultados = resultados;
 		
 		//Making Cuerpo
 		reporteCuerpo.add(this.estados.toString());
 		reporteCuerpo.add(this.vectores.toString());
-		reporteCuerpo.add(toString(this.tiempoPermProm));
-		reporteCuerpo.add(toString(this.tiempoPermMax));
-		reporteCuerpo.add(toString(this.tiempoPermMin));
+		reporteCuerpo.add(this.resultados.toString());
 		
 	};
 			
@@ -124,7 +130,53 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	
 	public void setUsuario(String nombreUsuario) {};
 	
-	public void visualizarReporte() {};
+	public void visualizarReporte() throws Exception {
+		
+		// Se crea el documento
+		Document documento = new Document();
+		
+		// Se crea el OutputStream para el fichero donde queremos dejar el pdf.
+		FileOutputStream ficheroPdf;
+		try {
+			ficheroPdf = new FileOutputStream("src/main/resources/fichero.pdf");
+			
+			// Se asocia el documento al OutputStream y se indica que el espaciado entre
+			// lineas sera de 20. Esta llamada debe hacerse antes de abrir el documento
+			PdfWriter.getInstance(documento,ficheroPdf).setInitialLeading(20);
+
+			// Se abre el documento.
+			documento.open();
+			
+			documento.add(new Paragraph("Esto es el primer párrafo, normalito"));
+
+			documento.add(new Paragraph("Este es el segundo y tiene una fuente rara",
+							FontFactory.getFont("arial",   // fuente
+							22,                            // tamaño
+							Font.ITALIC,                   // estilo
+							BaseColor.CYAN)));             // color
+			
+			try
+			{
+				Image foto = Image.getInstance("src/main/resources/Kratos.png");
+				foto.scaleToFit(100, 100);
+				foto.setAlignment(Chunk.ALIGN_MIDDLE);
+				documento.add(foto);
+			}
+			catch ( Exception e )
+			{
+				e.printStackTrace();
+			}
+			
+			documento.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	};
 	
 	public void visualizarReporteGenerado() {};
 	

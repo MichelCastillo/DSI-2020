@@ -1,5 +1,6 @@
 package com.dsi.builder.back.pattern;
 
+import java.util.ArrayList;
 
 /**
  * Builder interface defines all possible ways to configure a product
@@ -13,7 +14,7 @@ public interface IConstructorReporte {
 	
 	public void construirProducto();
 	
-	public void construirCuerpo(String estados[], String vectores[], double tiempoPermProm[][], double tiempoPermMax[][], double tiempoPermMin[][]);
+	public void construirCuerpo(String estados, String vectores, ArrayList<ArrayList<String>> resultados);
 	
 	public void construirEncabezado(String titulo, String fechaInicio, String fechaFin);
 	

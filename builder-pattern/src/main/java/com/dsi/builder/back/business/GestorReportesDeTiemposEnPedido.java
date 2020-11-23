@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import com.dsi.builder.back.Utils;
+import com.dsi.builder.back.pattern.ConstructorPDFReporte;
+import com.dsi.builder.back.pattern.DirectorConstruccionReporte;
+import com.dsi.builder.back.pattern.GeneradorArchivosPDF;
 
 import javafx.util.Pair;
 
 public class GestorReportesDeTiemposEnPedido {
 	
 	private ArrayList<Estado> estadosSeleccionados = new ArrayList<Estado>();
+	private Date fechaActual = new Date();
 	private String nombreUsuarioLog = "Mich";
 	private ArrayList<Sector> sectoresSelecc = new ArrayList<Sector>();
 	private ArrayList<Piso> pisosSelecc = new ArrayList<Piso>();
@@ -25,13 +29,29 @@ public class GestorReportesDeTiemposEnPedido {
 	
 	public GestorReportesDeTiemposEnPedido() {};
 	
-	public void generarReportePDF() {};
+	public void generarReportePDF() throws Exception {
+		
+		ConstructorPDFReporte constructor = new ConstructorPDFReporte();
+		
+		DirectorConstruccionReporte director = new DirectorConstruccionReporte(constructor);
+		
+		director.construir("Reporte de Tiempos en Pedidos", 
+				periodInitialDate.toString(), periodFinalDate.toString(), estadosSeleccionados.toString(), 
+				sectoresSelecc.toString(), results, this.nombreUsuarioLog, fechaActual.toString());
+		
+		GeneradorArchivosPDF report = (GeneradorArchivosPDF) constructor.obtenerProducto();
+		
+		report.visualizarReporte();
+		
+	};
 	
 	public ArrayList<Pair<String, Long>> getTuplas(){
 		return this.tuplas;
 	}
 	
 	public void getTiemposPorSector(Date initialDate, Date finalDate) {
+		this.tuplas.clear();
+		
 		ArrayList<Seccion> seccionesInvolucradas = new ArrayList<Seccion>();
 		
 		sectoresSelecc.forEach(eSector -> seccionesInvolucradas.addAll(eSector.conocerSeccion()));
@@ -59,7 +79,7 @@ public class GestorReportesDeTiemposEnPedido {
 		
 	}
 	
-	public void calcularTiemposPorSector(ArrayList<Pair<String, Long>> listOfTuplas) {
+	public void calcularTiemposSectores(ArrayList<Pair<String, Long>> listOfTuplas) {
 		
 		ArrayList<ArrayList<String>> results = new ArrayList<ArrayList<String>>();
 		
@@ -107,6 +127,37 @@ public class GestorReportesDeTiemposEnPedido {
 		
 		this.setResults(results);		
 	}
+		
+	public void getTiemposSector(Date initialDate, Date finalDate, Sector sector) {
+		this.tuplas.clear();
+		
+		ArrayList<Seccion> seccionesInvolucradas = new ArrayList<Seccion>();
+		
+		seccionesInvolucradas.addAll(sector.conocerSeccion());
+		
+		ArrayList<Mesa> mesas = new ArrayList<Mesa>();
+		
+		seccionesInvolucradas.forEach(eSeccion -> mesas.add(eSeccion.conocerMesa()));
+		
+		ArrayList<Pedido> pedidosInvolucrados = new ArrayList<Pedido>();
+		
+		mesas.forEach(eMesa -> pedidosInvolucrados.addAll(eMesa.conocerPedido()));
+		
+		ArrayList<HistorialEstado> historialesInvolucrados = new ArrayList<HistorialEstado>();
+		
+		pedidosInvolucrados
+					.stream()
+					.filter(ePedido -> ePedido.esDePeriodo(initialDate, finalDate))
+					.forEach(ePedido -> historialesInvolucrados.addAll(ePedido.getHistorial()));
+			
+		historialesInvolucrados.forEach(eHistorial -> {
+			Pair<String, Long> tupla = new Pair<String, Long>(eHistorial.conocerEstado().getNombre(), eHistorial.calcularDuracionEnEstado());
+			
+			tuplas.add(tupla);
+		});
+		
+	}
+	
 	
 	public void addPisosSeleccionados(ArrayList<Piso> pisos) {
 		pisos.forEach(ePiso -> pisosSelecc.add(ePiso));

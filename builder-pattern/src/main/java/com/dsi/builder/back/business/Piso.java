@@ -75,4 +75,16 @@ public class Piso {
     public ArrayList<Sector> getSectores() {
     	return this.sectores;
     }
+    
+    public ArrayList<String> getSectoresAsString() {    	
+    	ArrayList<String> sectoresAsString = new ArrayList<String>();
+    	
+    	sectores.forEach(eSector -> {
+    		
+    		sectoresAsString.add(eSector.getNombre());
+    	
+    	});
+    	
+    	return sectoresAsString;
+    }
 }
