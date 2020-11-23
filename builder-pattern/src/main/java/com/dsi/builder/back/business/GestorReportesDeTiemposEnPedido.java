@@ -22,11 +22,7 @@ public class GestorReportesDeTiemposEnPedido {
 	private ArrayList<Pair<String, Long>> tuplas = new ArrayList<Pair<String, Long>>();
 	private ArrayList<ArrayList<String>> results = new ArrayList<ArrayList<String>>();
 	private List<ArrayList<ArrayList<String>>> listOfResults = new ArrayList<ArrayList<ArrayList<String>>>();
-	
-	
-	
-	//UC Description
-	
+        
 	//Validate period
 	private Date periodInitialDate;
 	private Date periodFinalDate;	
