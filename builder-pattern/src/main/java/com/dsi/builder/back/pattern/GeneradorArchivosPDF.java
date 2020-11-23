@@ -97,7 +97,7 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 		this.sectores = sectores;
 		this.resultados = resultados;
 		
-		for (int i= 0; i<this.sectores.size() - 1; i++) {
+		for (int i= 0; i<this.sectores.size(); i++) {
 			try {
 				addCuerpoToPDF(sectores.get(i), this.resultados.get(i));
 			} catch (DocumentException e) {

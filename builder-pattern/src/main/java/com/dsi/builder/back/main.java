@@ -404,37 +404,6 @@ public class main {
 				gestor.addEstadosSeleccionados(states);
 				
 				gestor.generarReportePDF();
-				
-				
-				/*
-				GeneradorArchivosPDF pdf = new GeneradorArchivosPDF();
-				
-				pdf.createPDF(gestor.getUser(), gestor.getFechaHoraActual().toGMTString());
-				
-				pdf.addEncabezadoToPDF("Reporte de Tiempos de Pedido", initialDate.toLocaleString(), finalDate.toLocaleString());
-				
-				sectores.forEach(eSector -> {
-					
-					//Getting tuplas
-					//gestor.getTiemposPorSector(initialDate, finalDate);
-					gestor.getTiemposSector(initialDate, finalDate, eSector);
-					
-					//Getting Times per Sector
-					gestor.calcularTiemposSectores(gestor.getTuplas());
-					
-					try {
-						pdf.addCuerpoToPDF(eSector.getNombre(), gestor.getResults());
-					} catch (DocumentException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-				});
-				
-				pdf.closeDocument();
-				
-				System.out.println("File created. YAY !");
-				*/
 			} else {
 				
 				System.out.print("An error ocurred during period validation -----");	
