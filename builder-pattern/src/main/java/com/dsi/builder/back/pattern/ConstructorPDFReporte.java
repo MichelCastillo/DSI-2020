@@ -39,8 +39,8 @@ public class ConstructorPDFReporte implements IConstructorReporte {
 		
 	}
 
-	public void construirCuerpo(String estados, ArrayList<String> vectores, List<ArrayList<ArrayList<String>>> resultados) {
-		reporte.setCuerpo(estados, vectores, resultados);		
+	public void construirCuerpo(String estados, ArrayList<String> sectores, List<ArrayList<ArrayList<String>>> resultados) {
+		reporte.setCuerpo(estados, sectores, resultados);		
 	}
 
 	public void construirEncabezado(String titulo, String fechaInicio, String fechaFin) {

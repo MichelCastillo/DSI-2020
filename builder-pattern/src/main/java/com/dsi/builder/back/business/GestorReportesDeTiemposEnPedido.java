@@ -71,7 +71,7 @@ public class GestorReportesDeTiemposEnPedido {
 		
 		director.construir("Reporte de Tiempos en Pedidos", 
 				periodInitialDate.toString(), periodFinalDate.toString(), estadosSeleccionados.toString(), 
-				getEstadosAsString(), listOfResults, this.nombreUsuarioLog, fechaActual.toString());
+				getSectoresAsString(), listOfResults, this.nombreUsuarioLog, fechaActual.toString());
 		
 		//GeneradorArchivosPDF report = (GeneradorArchivosPDF) constructor.obtenerProducto();
 		

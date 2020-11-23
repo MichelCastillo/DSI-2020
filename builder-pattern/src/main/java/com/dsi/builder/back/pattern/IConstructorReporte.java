@@ -15,7 +15,7 @@ public interface IConstructorReporte {
 	
 	public void construirProducto(String nomUsuario, String fechaHoraGeneracion);
 	
-	public void construirCuerpo(String estados, ArrayList<String> vectores, List<ArrayList<ArrayList<String>>> resultados);
+	public void construirCuerpo(String estados, ArrayList<String> sectores, List<ArrayList<ArrayList<String>>> resultados);
 	
 	public void construirEncabezado(String titulo, String fechaInicio, String fechaFin);
 	

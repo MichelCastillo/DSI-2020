@@ -23,7 +23,7 @@ public class DirectorConstruccionReporte {
 	{
 		constructor.construirProducto(nomUsuario, fechaHoraGeneracion);
 		constructor.construirEncabezado(titulo, fechaInicio, fechaFin);
-		//constructor.construirCuerpo(estados, sectores, resultados);
+		constructor.construirCuerpo(estados, sectores, resultados);
 		constructor.construirPie(nomUsuario, fechaHoraGeneracion);
 	}
 

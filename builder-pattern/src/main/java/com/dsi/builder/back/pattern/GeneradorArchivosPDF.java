@@ -52,7 +52,7 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	
 	//Cuerpo
 	private String estados;
-	private ArrayList<String> vectores;
+	private ArrayList<String> sectores;
 	private List<ArrayList<ArrayList<String>>> resultados;	
 	
 	//Pie
@@ -88,18 +88,27 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		closeDocument();
-		System.out.println("File created, yaya!!");
 	};
 	
-	public void setCuerpo(String estados, ArrayList<String> vectores, List<ArrayList<ArrayList<String>>> resultados) {
+	public void setCuerpo(String estados, ArrayList<String> sectores, List<ArrayList<ArrayList<String>>> resultados)  {
 		
 		//Setting Cuerpo attributes
 		this.estados = estados;
-		this.vectores = vectores;
+		this.sectores = sectores;
 		this.resultados = resultados;
 		
+		for (int i= 0; i<this.sectores.size() - 1; i++) {
+			try {
+				addCuerpoToPDF(sectores.get(i), this.resultados.get(i));
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		closeDocument();
+		
+		System.out.println("File created !!!!!!");
 	};
 			
 	public void setPiePagina(String nombreUsuario, String fechaHoraGeneracion) {
