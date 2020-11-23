@@ -37,7 +37,7 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	//Document
 	Document document = new Document();
 	
-	private String target = "src/main/resources/ReporteDeTiemposDePedido.pdf";
+	private String target = "src/main/resources/output/ReporteDeTiemposDePedido.pdf";
 	
 	//Attributes
 	private List<String> reporteEncabezado;
@@ -139,7 +139,7 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	
 	public void setFechaFin(String fechaFin) {};
 	
-	public void setFechaHoraGeneración(String fechaHoraGeneración) {};
+	public void setFechaHoraGeneracion(String fechaHoraGeneracion) {};
 	
 	public void setFechaInicio(String fechaInicio) {};
 	
@@ -189,13 +189,13 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
     	
     	this.document.add(new Paragraph(titulo + " - UTN FRC - DSI 2020",
 				FontFactory.getFont("arial",   // fuente
-				15,                            // tamaño
+				15,                            // tamaï¿½o
 				Font.BOLD,                   // estilo
 				BaseColor.BLACK)));
     	
-    	this.document.add(new Paragraph("Período " + fechaInicio + " - " + fechaFin,
+    	this.document.add(new Paragraph("Perï¿½odo " + fechaInicio + " - " + fechaFin,
 				FontFactory.getFont("arial",   // fuente
-				12,                            // tamaño
+				12,                            // tamaï¿½o
 				Font.BOLD,                   // estilo
 				BaseColor.BLACK)));
     	
@@ -208,7 +208,7 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
     	
     	this.document.add(new Paragraph("- " + sector,
 			FontFactory.getFont("arial",   // fuente
-			12,                            // tamaño
+			12,                            // tamaï¿½o
 			Font.BOLD,                   // estilo
 			BaseColor.BLACK)));
 	
@@ -217,8 +217,8 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 		PdfPTable tabla = new PdfPTable(4);
 		
 		tabla.addCell("Estado");
-		tabla.addCell("MÁXIMO");
-		tabla.addCell("MÍNIMO");
+		tabla.addCell("Mï¿½XIMO");
+		tabla.addCell("Mï¿½NIMO");
 		tabla.addCell("PROMEDIO");
 	
     	resultados.forEach(eResultado -> {
