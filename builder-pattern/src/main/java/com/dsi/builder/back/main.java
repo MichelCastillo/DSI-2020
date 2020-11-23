@@ -431,12 +431,6 @@ public class main {
 				
 				System.out.println("File created. YAY !");
 				
-				//Displaying all available states for Pedidos
-				//states.forEach(stateElement -> System.out.println(stateElement.toString()));
-				
-				//Displaying all available Pisos
-				//pisos.forEach(pisoElement -> System.out.println(pisoElement.visualizarPiso()));
-				
 			} else {
 				
 				System.out.print("An error ocurred during period validation -----");	

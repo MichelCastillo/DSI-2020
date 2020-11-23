@@ -10,12 +10,19 @@ import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Header;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.ColumnText;
+import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfPage;
+import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import com.dsi.builder.back.business.EstadosPedido;
@@ -29,6 +36,8 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	
 	//Document
 	Document document = new Document();
+	
+	private String target = "src/main/resources/ReporteDeTiemposDePedido.pdf";
 	
 	//Attributes
 	private List<String> reporteEncabezado;
@@ -138,14 +147,20 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	public void createPDF() throws FileNotFoundException, DocumentException {
     	
     	// Se crea el OutputStream para el fichero donde queremos dejar el pdf.
-    	FileOutputStream file = new FileOutputStream("src/main/resources/ReporteDeTiemposDePedido.pdf");
+    	FileOutputStream file = new FileOutputStream(target);
     	
     	// Se asocia el documento al OutputStream y se indica que el espaciado entre
     	// lineas sera de 20. Esta llamada debe hacerse antes de abrir el documento
-    	PdfWriter.getInstance(this.document, file).setInitialLeading(20);
+    	PdfWriter writer = PdfWriter.getInstance(this.document, file);
+    	
+    	//PdfWriter.getInstance(this.document, file).setInitialLeading(20);
+    	
+    	MyFooter event = new MyFooter();
     	
     	// Se abre el documento.
     	document.open();
+    	
+    	writer.setPageEvent(event);
     	
     	try
     	{
@@ -210,6 +225,9 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
     	this.document.add(tabla);
     }
     
+    private void addPieDePagina(String user, String fechaHoraGeneracion) {
+    }
+    
     public void closeDocument() {
     	this.document.close();
     }
@@ -223,4 +241,22 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	};
 	
 						   
+}
+
+class MyFooter extends PdfPageEventHelper {
+    Font ffont = new Font(Font.FontFamily.UNDEFINED, 5, Font.ITALIC);
+        
+    public void onEndPage(PdfWriter writer, Document document) {
+        PdfContentByte cb = writer.getDirectContent();
+        Phrase header = new Phrase("this is a header", ffont);
+        Phrase footer = new Phrase("this is a footer", ffont);
+        ColumnText.showTextAligned(cb, Element.ALIGN_CENTER,
+                header,
+                (document.right() - document.left()) / 2 + document.leftMargin(),
+                document.top() + 10, 0);
+        ColumnText.showTextAligned(cb, Element.ALIGN_CENTER,
+                footer,
+                (document.right() - document.left()) / 2 + document.leftMargin(),
+                document.bottom() - 10, 0);
+    }
 }
