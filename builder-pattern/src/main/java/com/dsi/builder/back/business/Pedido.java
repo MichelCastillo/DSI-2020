@@ -13,6 +13,10 @@ public class Pedido {
 	private ArrayList<HistorialEstado> historial = new ArrayList<HistorialEstado>();
 	private ArrayList<String> listaHistoriales = new ArrayList<String>();
 	
+	 public boolean esDePeriodo(Date initialDate, Date finalDate) {
+		 return fechaHoraPed.after(initialDate) && fechaHoraPed.before(finalDate);
+	 }
+	
 	 @Override
 	 public String toString() {	    	
 	    return "N°: " + this.nroPedido + "------------------------------------------"

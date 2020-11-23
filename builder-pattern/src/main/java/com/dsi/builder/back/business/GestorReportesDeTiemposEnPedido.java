@@ -16,7 +16,8 @@ public class GestorReportesDeTiemposEnPedido {
 	private String nombreUsuarioLog = "Mich";
 	private ArrayList<Sector> sectoresSelecc = new ArrayList<Sector>();
 	private ArrayList<Piso> pisosSelecc = new ArrayList<Piso>();
-	private List<List<Object>> resultados = new ArrayList<List<Object>>();
+	private ArrayList<Pair<String, Long>> tuplas = new ArrayList<Pair<String, Long>>();
+	private ArrayList<ArrayList<String>> results = new ArrayList<ArrayList<String>>();
 	private Double[][] tiemposPermMax;
 	private Double[][] tiemposPermMin;
 	private Double[][] tiemposPermDouble;
@@ -32,7 +33,11 @@ public class GestorReportesDeTiemposEnPedido {
 	
 	public void generarReportePDF() {};
 	
-	public ArrayList<Pair<String, Long>> getTiemposPorSector() {
+	public ArrayList<Pair<String, Long>> getTuplas(){
+		return this.tuplas;
+	}
+	
+	public void getTiemposPorSector(Date initialDate, Date finalDate) {
 		ArrayList<Seccion> seccionesInvolucradas = new ArrayList<Seccion>();
 		
 		sectoresSelecc.forEach(eSector -> seccionesInvolucradas.addAll(eSector.conocerSeccion()));
@@ -47,21 +52,20 @@ public class GestorReportesDeTiemposEnPedido {
 		
 		ArrayList<HistorialEstado> historialesInvolucrados = new ArrayList<HistorialEstado>();
 		
-		pedidosInvolucrados.forEach(ePedido -> historialesInvolucrados.addAll(ePedido.getHistorial()));
-		
-		ArrayList<Pair<String, Long>> tuplas = new ArrayList<Pair<String, Long>>();
-		
+		pedidosInvolucrados
+					.stream()
+					.filter(ePedido -> ePedido.esDePeriodo(initialDate, finalDate))
+					.forEach(ePedido -> historialesInvolucrados.addAll(ePedido.getHistorial()));
+			
 		historialesInvolucrados.forEach(eHistorial -> {
 			Pair<String, Long> tupla = new Pair<String, Long>(eHistorial.conocerEstado().getNombre(), eHistorial.calcularDuracionEnEstado());
 			
 			tuplas.add(tupla);
 		});
 		
-		return tuplas;
-		
 	}
 	
-	public ArrayList<ArrayList<String>> calcularTiemposPorSector(ArrayList<Pair<String, Long>> listOfTuplas) {
+	public void calcularTiemposPorSector(ArrayList<Pair<String, Long>> listOfTuplas) {
 		
 		ArrayList<ArrayList<String>> results = new ArrayList<ArrayList<String>>();
 		
@@ -78,36 +82,36 @@ public class GestorReportesDeTiemposEnPedido {
 			if (listOfTuplas.stream()
 						.anyMatch(tupla -> tupla.getKey().equals(eEstado.getNombre()))) {
 			
-			listOfTuplas.stream()
-						.filter(tupla -> tupla.getKey().equals(eEstado.getNombre()))
-						.forEach(tupla -> {
-							values.add(tupla.getValue());
-						});;
-			
-			maxValue = Collections.max(values);
-			minValue = Collections.min(values);
-			avg = Utils.calculateAverage(values);
-			
-			wildcardResults.add(eEstado.getNombre());
-			wildcardResults.add(String.valueOf(maxValue));
-			wildcardResults.add(String.valueOf(minValue));
-			wildcardResults.add(String.valueOf(avg));
-			
-			results.add(wildcardResults);
+				listOfTuplas.stream()
+							.filter(tupla -> tupla.getKey().equals(eEstado.getNombre()))
+							.forEach(tupla -> {
+								values.add(tupla.getValue());
+							});
+				
+				maxValue = Collections.max(values);
+				minValue = Collections.min(values);
+				avg = Utils.calculateAverage(values);
+				
+				wildcardResults.add(eEstado.getNombre());
+				wildcardResults.add(String.valueOf(maxValue));
+				wildcardResults.add(String.valueOf(minValue));
+				wildcardResults.add(String.valueOf(avg));
+				
+				results.add(wildcardResults);
 			
 			} else {
 				
 				wildcardResults.add(eEstado.getNombre());
-				wildcardResults.add(String.valueOf(0));
-				wildcardResults.add(String.valueOf(0));
-				wildcardResults.add(String.valueOf(0));
+				wildcardResults.add(String.valueOf("No existen referencias"));
+				wildcardResults.add(String.valueOf("No existen referencias"));
+				wildcardResults.add(String.valueOf("No existen referencias"));
 				
 				results.add(wildcardResults);
 			}
 				
 		});
 		
-		return results;		
+		this.setResults(results);		
 	}
 	
 	public void addPisosSeleccionados(ArrayList<Piso> pisos) {
@@ -168,6 +172,20 @@ public class GestorReportesDeTiemposEnPedido {
 	 */
 	public void addEstadosSeleccionados(ArrayList<Estado> estadosSeleccionados) {
 		estadosSeleccionados.forEach(pEstado -> this.estadosSeleccionados.add(pEstado));
+	}
+
+	/**
+	 * @return the results
+	 */
+	public ArrayList<ArrayList<String>> getResults() {
+		return results;
+	}
+
+	/**
+	 * @param results the results to set
+	 */
+	public void setResults(ArrayList<ArrayList<String>> results) {
+		this.results = results;
 	};
 
 }

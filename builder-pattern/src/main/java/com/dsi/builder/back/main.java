@@ -393,13 +393,14 @@ public class main {
 				//Adding estadosSeleccionados
 				gestor.addEstadosSeleccionados(states);
 				
-				//System.out.println(gestor.getTiemposPorSector());
+				//Getting tuplas
+				gestor.getTiemposPorSector(initialDate, finalDate);
 				
-				System.out.println(gestor.calcularTiemposPorSector(gestor.getTiemposPorSector()));
+				//Getting Times per Sector
+				gestor.calcularTiemposPorSector(gestor.getTuplas());
 				
-				//List<?> pedidos = sectoresPiso1.getPedidosSector();
-				
-				//System.out.println(gestor.getSectoresSelecc().toString());
+				//Displaying Times per Sector
+				System.out.println(gestor.getResults());
 			
 				//Displaying all available states for Pedidos
 				//states.forEach(stateElement -> System.out.println(stateElement.toString()));
