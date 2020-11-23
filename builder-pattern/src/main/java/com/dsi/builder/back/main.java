@@ -405,7 +405,7 @@ public class main {
 				
 				GeneradorArchivosPDF pdf = new GeneradorArchivosPDF();
 				
-				pdf.createPDF();
+				pdf.createPDF(gestor.getUser(), gestor.getFechaHoraActual().toGMTString());
 				
 				pdf.addEncabezadoToPDF("Reporte de Tiempos de Pedido", initialDate.toLocaleString(), finalDate.toLocaleString());
 				

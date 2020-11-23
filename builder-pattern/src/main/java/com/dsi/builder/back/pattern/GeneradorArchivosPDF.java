@@ -144,7 +144,7 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	
 	public void setUsuario(String nombreUsuario) {};
 	
-	public void createPDF() throws FileNotFoundException, DocumentException {
+	public void createPDF(String user, String fechaHoraGeneracion) throws FileNotFoundException, DocumentException {
     	
     	// Se crea el OutputStream para el fichero donde queremos dejar el pdf.
     	FileOutputStream file = new FileOutputStream(target);
@@ -155,7 +155,7 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
     	
     	//PdfWriter.getInstance(this.document, file).setInitialLeading(20);
     	
-    	MyFooter event = new MyFooter();
+    	MyFooter event = new MyFooter(user, fechaHoraGeneracion);
     	
     	// Se abre el documento.
     	document.open();
@@ -166,10 +166,7 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
     	{
     		Image foto = Image.getInstance("src/main/resources/UTN_Logo.jpg");
     		foto.scaleToFit(100, 100);
-    		//foto.setAlignment(Chunk.ALIGN_TOP);
     		foto.setAbsolutePosition((PageSize.A4.getWidth() - foto.getScaledWidth())-10, (PageSize.A4.getHeight() - foto.getScaledHeight()) -10);
-
-    		
     		document.add(foto);
     	}
     	catch ( Exception e )
@@ -226,6 +223,7 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
     }
     
     private void addPieDePagina(String user, String fechaHoraGeneracion) {
+    	//TODO: implementation was not necessary
     }
     
     public void closeDocument() {
@@ -244,12 +242,21 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 }
 
 class MyFooter extends PdfPageEventHelper {
-    Font ffont = new Font(Font.FontFamily.UNDEFINED, 5, Font.ITALIC);
+    Font ffontHeader = new Font(Font.FontFamily.COURIER, 10, Font.ITALIC);
+    Font ffontFooter = new Font(Font.FontFamily.COURIER, 10, Font.BOLD);
+    
+    private String user = "";
+    private String fechaHoraGeneracion = "";
+    
+    public MyFooter(String user, String fechaHoraGeneracion) {
+    	this.user = user;
+    	this.fechaHoraGeneracion = fechaHoraGeneracion;
+    }
         
     public void onEndPage(PdfWriter writer, Document document) {
         PdfContentByte cb = writer.getDirectContent();
-        Phrase header = new Phrase("this is a header", ffont);
-        Phrase footer = new Phrase("this is a footer", ffont);
+        Phrase header = new Phrase("Author " + this.user, ffontHeader);
+        Phrase footer = new Phrase("Fecha: " + this.fechaHoraGeneracion + " - Page number: " + document.getPageNumber(), ffontFooter);
         ColumnText.showTextAligned(cb, Element.ALIGN_CENTER,
                 header,
                 (document.right() - document.left()) / 2 + document.leftMargin(),

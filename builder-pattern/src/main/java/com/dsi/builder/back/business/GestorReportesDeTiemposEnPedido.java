@@ -251,5 +251,13 @@ public class GestorReportesDeTiemposEnPedido {
 	public void setResults(ArrayList<ArrayList<String>> results) {
 		this.results = results;
 	};
+	
+	public Date getFechaHoraActual() {
+		return this.fechaActual;
+	}
+	
+	public String getUser() {
+		return this.nombreUsuarioLog;
+	}
 
 }
