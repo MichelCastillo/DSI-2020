@@ -162,8 +162,6 @@ public class main {
 		
 		Calendar myDate = new GregorianCalendar();
 		
-		
-		
 		String fechaInicio = "19/11/2020 20:00:00";
 		Date fechaDateInicio;
 		
