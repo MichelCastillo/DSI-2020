@@ -7,6 +7,10 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
+import com.dsi.builder.back.*;
+import com.dsi.builder.back.business.Estado;
+import com.dsi.builder.back.business.GestorReportesDeTiemposEnPedido;
+import java.util.ArrayList;
 
 
 /*
@@ -333,41 +337,87 @@ public class reportesEnTiempoDePedido extends javax.swing.JFrame {
     }//GEN-LAST:event_CheckPrimerPisoActionPerformed
 
     private void BtnTotalizarPisoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTotalizarPisoActionPerformed
-                String PeriodoInicial;
-                String PeriodoFinal;
                 
-                PeriodoInicial = TxtFechaInicio.getText();
-		PeriodoFinal = TxtFechaFin.getText();
+                String PeriodoInicial = TxtFechaInicio.getText();
+                String PeriodoFinal = TxtFechaFin.getText();
+                
                 if (PeriodoInicial.equals("") || PeriodoFinal.equals("") ){
                     javax.swing.JOptionPane mensaje = new javax.swing.JOptionPane();
                 mensaje.showMessageDialog(null, "Falta ingresar alguna fecha", "Error al ingresar fecha", mensaje.ERROR_MESSAGE);
                 }
                 else {
-                    if (Date.parse(TxtFechaInicio.getText())<= Date.parse(TxtFechaFin.getText()) )
-               {  
-		//PeriodoInicial = TxtFechaInicio.getText();
-		//PeriodoFinal = TxtFechaFin.getText();
-                
-                
-		new Visualizar().setVisible(true);
-                this.setVisible (false);
-               }
-                else
-                {
-		//System.out.println("No cargo correctamente los datos, reintente");
-                javax.swing.JOptionPane mensaje = new javax.swing.JOptionPane();
-                mensaje.showMessageDialog(null, "La fecha ingresada no es válida", "Error al ingresar fecha", mensaje.ERROR_MESSAGE);
-                }
                     
-	//	System.out.println(PeriodoInicial);
-
-	//	System.out.println(PeriodoFinal);
+                    Date datePeriodoInicial = Utils.parseDate(PeriodoInicial);
+                    Date datePeriodoFinal = Utils.parseDate(PeriodoFinal);
+                    
+                    if (!(datePeriodoInicial.after(datePeriodoFinal)))
+                    {
+                        new Visualizar().setVisible(true);
+                        this.setVisible (false);
+                    } else {
+                        //System.out.println("No cargo correctamente los datos, reintente");
+                        javax.swing.JOptionPane mensaje = new javax.swing.JOptionPane();
+                        mensaje.showMessageDialog(null, "La fecha ingresada no es válida", "Error al ingresar fecha", mensaje.ERROR_MESSAGE);
+                    }
                 }
                 
-               
+                GestorReportesDeTiemposEnPedido gestor = new GestorReportesDeTiemposEnPedido();
                 
-  
+                ArrayList<Estado> states = new ArrayList<Estado>();
+                
+                //Creating Pedido's states
+		Estado estadoCreado = new Estado();
+		estadoCreado.setAmbito("PEDIDO");
+		estadoCreado.setNombreEstadoPedido("CREADO");
+		
+		states.add(estadoCreado);
+                
+                if (CheckCancelado.isSelected()){
+                    Estado estadoCancelado = new Estado();
+                    estadoCancelado.setAmbito("PEDIDO");
+                    estadoCancelado.setNombreEstadoPedido("CANCELADO");
+		
+                    states.add(estadoCancelado);
+                }
+		
+		if (CheckCancelado.isSelected()){
+                    Estado estadoNotificado = new Estado();
+                    estadoNotificado.setAmbito("PEDIDO");
+                    estadoNotificado.setNombreEstadoPedido("NOTIFICADO");
+		
+                    states.add(estadoNotificado);
+                }
+                
+                if (CheckEntregado.isSelected()){
+                    Estado estadoEntregado = new Estado();
+                    estadoEntregado.setAmbito("PEDIDO");
+                    estadoEntregado.setNombreEstadoPedido("ENTREGADO");
 
+                    states.add(estadoEntregado);
+                }
+                if (CheckPendientePreparacion.isSelected()){
+                    Estado estadoPendiente = new Estado();
+                    estadoPendiente.setAmbito("PEDIDO");
+                    estadoPendiente.setNombreEstadoPedido("PENDIENTE_PREPARACION");
+
+                    states.add(estadoPendiente);   
+                }
+                
+                if (CheckEnPreparacion.isSelected()){
+                    Estado estadoEnPreparacion = new Estado();
+                    estadoEnPreparacion.setAmbito("PEDIDO");
+                    estadoEnPreparacion.setNombreEstadoPedido("EN_PREPARACION");
+
+                    states.add(estadoEnPreparacion);
+                }
+                
+                if (CheckListoParaServir.isSelected()){
+                    Estado estadoListoParaServir = new Estado();
+                    estadoListoParaServir.setAmbito("PEDIDO");
+                    estadoListoParaServir.setNombreEstadoPedido("LISTO_PARA_SERVIR");
+
+                    states.add(estadoListoParaServir);
+                }
     }//GEN-LAST:event_BtnTotalizarPisoActionPerformed
 
     private void TxtFechaFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFechaFinActionPerformed
