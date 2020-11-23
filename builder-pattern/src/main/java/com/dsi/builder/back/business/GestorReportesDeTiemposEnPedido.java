@@ -1,8 +1,13 @@
 package com.dsi.builder.back.business;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import com.dsi.builder.back.Utils;
+
+import javafx.util.Pair;
 
 public class GestorReportesDeTiemposEnPedido {
 	
@@ -27,10 +32,82 @@ public class GestorReportesDeTiemposEnPedido {
 	
 	public void generarReportePDF() {};
 	
-	public void calcularTotalTiempoPorPiso() {
+	public ArrayList<Pair<String, Long>> getTiemposPorSector() {
+		ArrayList<Seccion> seccionesInvolucradas = new ArrayList<Seccion>();
 		
+		sectoresSelecc.forEach(eSector -> seccionesInvolucradas.addAll(eSector.conocerSeccion()));
 		
+		ArrayList<Mesa> mesas = new ArrayList<Mesa>();
 		
+		seccionesInvolucradas.forEach(eSeccion -> mesas.add(eSeccion.conocerMesa()));
+		
+		ArrayList<Pedido> pedidosInvolucrados = new ArrayList<Pedido>();
+		
+		mesas.forEach(eMesa -> pedidosInvolucrados.addAll(eMesa.conocerPedido()));
+		
+		ArrayList<HistorialEstado> historialesInvolucrados = new ArrayList<HistorialEstado>();
+		
+		pedidosInvolucrados.forEach(ePedido -> historialesInvolucrados.addAll(ePedido.getHistorial()));
+		
+		ArrayList<Pair<String, Long>> tuplas = new ArrayList<Pair<String, Long>>();
+		
+		historialesInvolucrados.forEach(eHistorial -> {
+			Pair<String, Long> tupla = new Pair<String, Long>(eHistorial.conocerEstado().getNombre(), eHistorial.calcularDuracionEnEstado());
+			
+			tuplas.add(tupla);
+		});
+		
+		return tuplas;
+		
+	}
+	
+	public ArrayList<ArrayList<String>> calcularTiemposPorSector(ArrayList<Pair<String, Long>> listOfTuplas) {
+		
+		ArrayList<ArrayList<String>> results = new ArrayList<ArrayList<String>>();
+		
+		this.estadosSeleccionados
+						.forEach(eEstado -> {
+			
+			ArrayList<Long> values = new ArrayList<Long>();
+			ArrayList<String> wildcardResults = new ArrayList<String>();
+			
+			Long maxValue = 0l;
+			Long minValue = 0l;
+			Double avg = 0.0;
+			
+			if (listOfTuplas.stream()
+						.anyMatch(tupla -> tupla.getKey().equals(eEstado.getNombre()))) {
+			
+			listOfTuplas.stream()
+						.filter(tupla -> tupla.getKey().equals(eEstado.getNombre()))
+						.forEach(tupla -> {
+							values.add(tupla.getValue());
+						});;
+			
+			maxValue = Collections.max(values);
+			minValue = Collections.min(values);
+			avg = Utils.calculateAverage(values);
+			
+			wildcardResults.add(eEstado.getNombre());
+			wildcardResults.add(String.valueOf(maxValue));
+			wildcardResults.add(String.valueOf(minValue));
+			wildcardResults.add(String.valueOf(avg));
+			
+			results.add(wildcardResults);
+			
+			} else {
+				
+				wildcardResults.add(eEstado.getNombre());
+				wildcardResults.add(String.valueOf(0));
+				wildcardResults.add(String.valueOf(0));
+				wildcardResults.add(String.valueOf(0));
+				
+				results.add(wildcardResults);
+			}
+				
+		});
+		
+		return results;		
 	}
 	
 	public void addPisosSeleccionados(ArrayList<Piso> pisos) {
@@ -89,7 +166,7 @@ public class GestorReportesDeTiemposEnPedido {
 	/**
 	 * @param estadosSeleccionados the estadosSeleccionados to set
 	 */
-	public void setEstadosSeleccionados(ArrayList<Estado> estadosSeleccionados) {
+	public void addEstadosSeleccionados(ArrayList<Estado> estadosSeleccionados) {
 		estadosSeleccionados.forEach(pEstado -> this.estadosSeleccionados.add(pEstado));
 	};
 

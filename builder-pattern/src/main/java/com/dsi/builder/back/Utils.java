@@ -1,7 +1,9 @@
 package com.dsi.builder.back;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.awt.List;
 import java.text.DateFormat;
 import java.text.ParseException;
 
@@ -41,5 +43,16 @@ public class Utils {
     public static long calculateMinDiference(Date initialDate, Date finalDate) {
     	return Math.abs(finalDate.getTime() - initialDate.getTime()) / (1000 * 60);
     }
+    
+    public static double calculateAverage(ArrayList<Long> marks) {
+    	  Long sum = (long) 0;
+    	  if(!marks.isEmpty()) {
+    	    for (Long mark : marks) {
+    	        sum += mark;
+    	    }
+    	    return sum.doubleValue() / marks.size();
+    	  }
+    	  return sum;
+    	}
 
 }

@@ -13,6 +13,10 @@ public class Mesa {
 	private Estado estado;
 	private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 	
+	public ArrayList<Pedido> getPedidos() {
+		return this.pedidos;
+	}
+	
 	public Mesa(int capacidadComensales, double espacioQueOcupa, int filaEnPlano, int numero, int ordenEnPlano, Estado estado, Pedido pedido) {
 		
 		this.capacidadComensales = capacidadComensales;

@@ -17,11 +17,11 @@ public class HistorialEstado {
     public long calcularDuracionEnEstado() {
     	this.fechaActual = new Date();
     	
-    	if(!(fechaHoraFin != null)) {
-    		return Utils.calculateMinDiference(fechaHoraInicio, fechaHoraFin);
+    	if(!(fechaHoraFin == null)) {
+    		return Utils.calculateMinDiference(this.fechaHoraInicio, this.fechaHoraFin);
     	}
     	
-    	return Utils.calculateMinDiference(fechaHoraInicio, fechaActual);
+    	return Utils.calculateMinDiference(this.fechaHoraInicio, fechaActual);
     	
     }
 

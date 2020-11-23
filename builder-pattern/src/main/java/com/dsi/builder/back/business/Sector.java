@@ -1,6 +1,10 @@
 package com.dsi.builder.back.business;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Sector {
 	
@@ -10,6 +14,7 @@ public class Sector {
 	private String ubicacionPuerta;
 	private String ubicacionVentana;
 	private ArrayList<Seccion> secciones = new ArrayList<Seccion>();
+	
 	
 	public Sector(String nombre, double ancho, double largo, String ubicacionPuerta, String ubicacionVentana, ArrayList<Seccion> secciones) {
 		this.nombre = nombre;
@@ -21,9 +26,23 @@ public class Sector {
 		
 	}
 	
+	public ArrayList<String> getPedidosSector() {
+		ArrayList<Mesa> mesas = new ArrayList<Mesa>(); 
+		secciones.forEach(eSeccion -> mesas.add(eSeccion.conocerMesa()));
+		
+		ArrayList<Pedido> pedidosSector = new ArrayList<Pedido>();
+		mesas.forEach(eMesa -> pedidosSector.addAll(eMesa.conocerPedido()));
+		
+		ArrayList<String> results = new ArrayList<String>();
+		
+		//results.add(pedidosSector.forEach(ePedido -> ePedido.obtenerHistoriales()));
+		
+		return null;
+	}
+	
 	public void armarPlano() {};
 	
-	public ArrayList<Seccion> ConocerSeccion() {
+	public ArrayList<Seccion> conocerSeccion() {
 		return secciones;
 	};
 	
@@ -46,8 +65,6 @@ public class Sector {
 	public void calcTiempoPermPromedio() {};
 	
 	public void calcularTiempos() {};
-	
-	public void conocerSeccion() {};
 	
 	public void contarPedidosSectorPorEstado() {};
 	

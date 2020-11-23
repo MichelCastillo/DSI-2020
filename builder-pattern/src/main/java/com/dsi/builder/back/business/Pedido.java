@@ -11,6 +11,7 @@ public class Pedido {
 	private Date fechaHoraPed;
 	private Factura factura;
 	private ArrayList<HistorialEstado> historial = new ArrayList<HistorialEstado>();
+	private ArrayList<String> listaHistoriales = new ArrayList<String>();
 	
 	 @Override
 	 public String toString() {	    	
@@ -21,6 +22,10 @@ public class Pedido {
 	    		+ "\n\t\t\t\t\t\t\t\tHistorial Estados: " + historial.toString()
 	    		; 
 	 }
+	 
+	 public ArrayList<String> getListaHistoriales() {
+		 return this.listaHistoriales;
+	 }
 	
 	public Pedido(int comensales, Date fechaHora, int numero, Factura factura){
 		
@@ -28,6 +33,16 @@ public class Pedido {
 		this.fechaHoraPed = fechaHora;
 		this.nroPedido = numero;
 		this.factura = factura;
+	}
+	
+	public ArrayList<String> obtenerHistoriales() {
+		
+		historial.forEach(eHistorial -> {
+			listaHistoriales.add(eHistorial.conocerEstado().getNombre());
+			listaHistoriales.add(String.valueOf(eHistorial.calcularDuracionEnEstado()));
+		});
+		
+		return listaHistoriales;
 	}
 	
 	/**

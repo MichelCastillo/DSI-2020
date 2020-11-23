@@ -390,8 +390,17 @@ public class main {
 				//Adding sectoresSelecc
 				pisos.forEach(ePiso -> gestor.addSectoresSeleccionados(ePiso.getSectores()));
 				
-				//System.out.println(gestor.getSectoresSelecc().toString());
+				//Adding estadosSeleccionados
+				gestor.addEstadosSeleccionados(states);
 				
+				//System.out.println(gestor.getTiemposPorSector());
+				
+				System.out.println(gestor.calcularTiemposPorSector(gestor.getTiemposPorSector()));
+				
+				//List<?> pedidos = sectoresPiso1.getPedidosSector();
+				
+				//System.out.println(gestor.getSectoresSelecc().toString());
+			
 				//Displaying all available states for Pedidos
 				//states.forEach(stateElement -> System.out.println(stateElement.toString()));
 				
