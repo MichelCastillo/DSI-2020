@@ -120,7 +120,7 @@ public class Utils {
     	
     }
     
-    public static Document addCuerpoToPDF(Document document, ArrayList<String> sectores) {//, ArrayList<String> resultados) throws DocumentException {
+    public static Document addCuerpoToPDF(Document document, ArrayList<String> sectores, ArrayList<ArrayList<String>> resultados) throws DocumentException {
     	
     	sectores.forEach(eSector -> {
     		try {
@@ -146,6 +146,39 @@ public class Utils {
 				e.printStackTrace();
 			}
     	});
+    	
+    	document.close();
+    	
+    	return document;
+    }
+    
+    public static Document addCuerpoToPDF2(Document document, String sector, ArrayList<ArrayList<String>> resultados) throws DocumentException {
+    
+    	document.add( Chunk.NEWLINE );
+    	
+    	document.add(new Paragraph("- " + sector,
+			FontFactory.getFont("arial",   // fuente
+			12,                            // tamaño
+			Font.BOLD,                   // estilo
+			BaseColor.BLACK)));
+	
+		document.add( Chunk.NEWLINE );
+		
+		PdfPTable tabla = new PdfPTable(4);
+		
+		tabla.addCell("Estado");
+		tabla.addCell("MAX");
+		tabla.addCell("MIN");
+		tabla.addCell("AVG");
+	
+    	resultados.forEach(eResultado -> {
+				tabla.addCell(eResultado.get(0));
+				tabla.addCell(eResultado.get(1));
+				tabla.addCell(eResultado.get(2));
+				tabla.addCell(eResultado.get(3));
+    	});
+    	
+    	document.add(tabla);
     	
     	document.close();
     	

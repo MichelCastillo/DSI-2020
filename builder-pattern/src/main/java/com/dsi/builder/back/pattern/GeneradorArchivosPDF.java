@@ -13,7 +13,9 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import com.dsi.builder.back.business.EstadosPedido;
@@ -24,6 +26,9 @@ import com.dsi.builder.back.business.EstadosPedido;
  *
  */
 public class GeneradorArchivosPDF implements IPresentacionReporte{
+	
+	//Document
+	Document document = new Document();
 	
 	//Attributes
 	private List<String> reporteEncabezado;
@@ -130,55 +135,92 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	
 	public void setUsuario(String nombreUsuario) {};
 	
+	public void createPDF() throws FileNotFoundException, DocumentException {
+    	
+    	// Se crea el OutputStream para el fichero donde queremos dejar el pdf.
+    	FileOutputStream file = new FileOutputStream("src/main/resources/ReporteDeTiemposDePedido.pdf");
+    	
+    	// Se asocia el documento al OutputStream y se indica que el espaciado entre
+    	// lineas sera de 20. Esta llamada debe hacerse antes de abrir el documento
+    	PdfWriter.getInstance(this.document, file).setInitialLeading(20);
+    	
+    	// Se abre el documento.
+    	document.open();
+    	
+    	try
+    	{
+    		Image foto = Image.getInstance("src/main/resources/UTN_Logo.jpg");
+    		foto.scaleToFit(100, 100);
+    		//foto.setAlignment(Chunk.ALIGN_TOP);
+    		foto.setAbsolutePosition((PageSize.A4.getWidth() - foto.getScaledWidth())-10, (PageSize.A4.getHeight() - foto.getScaledHeight()) -10);
+
+    		
+    		document.add(foto);
+    	}
+    	catch ( Exception e )
+    	{
+    		e.printStackTrace();
+    	}
+    	
+    }
+	
+	public void addEncabezadoToPDF(String titulo, String fechaInicio, String fechaFin) throws DocumentException {
+    	
+    	this.document.add(new Paragraph(titulo + " - UTN FRC - DSI 2020",
+				FontFactory.getFont("arial",   // fuente
+				15,                            // tamaño
+				Font.BOLD,                   // estilo
+				BaseColor.BLACK)));
+    	
+    	this.document.add(new Paragraph("Período " + fechaInicio + " - " + fechaFin,
+				FontFactory.getFont("arial",   // fuente
+				12,                            // tamaño
+				Font.BOLD,                   // estilo
+				BaseColor.BLACK)));
+    	
+    	//this.document.close();
+    }
+    
+    public void addCuerpoToPDF(String sector, ArrayList<ArrayList<String>> resultados) throws DocumentException {
+    
+    	this.document.add( Chunk.NEWLINE );
+    	
+    	this.document.add(new Paragraph("- " + sector,
+			FontFactory.getFont("arial",   // fuente
+			12,                            // tamaño
+			Font.BOLD,                   // estilo
+			BaseColor.BLACK)));
+	
+		this.document.add( Chunk.NEWLINE );
+		
+		PdfPTable tabla = new PdfPTable(4);
+		
+		tabla.addCell("Estado");
+		tabla.addCell("MAX");
+		tabla.addCell("MIN");
+		tabla.addCell("AVG");
+	
+    	resultados.forEach(eResultado -> {
+				tabla.addCell(eResultado.get(0));
+				tabla.addCell(eResultado.get(1));
+				tabla.addCell(eResultado.get(2));
+				tabla.addCell(eResultado.get(3));
+    	});
+    	
+    	this.document.add(tabla);
+    }
+    
+    public void closeDocument() {
+    	this.document.close();
+    }
+    
+	public void visualizarReporteGenerado() {}
+
+	@Override
 	public void visualizarReporte() throws Exception {
-		
-		// Se crea el documento
-		Document documento = new Document();
-		
-		// Se crea el OutputStream para el fichero donde queremos dejar el pdf.
-		FileOutputStream ficheroPdf;
-		try {
-			ficheroPdf = new FileOutputStream("src/main/resources/fichero.pdf");
-			
-			// Se asocia el documento al OutputStream y se indica que el espaciado entre
-			// lineas sera de 20. Esta llamada debe hacerse antes de abrir el documento
-			PdfWriter.getInstance(documento,ficheroPdf).setInitialLeading(20);
-
-			// Se abre el documento.
-			documento.open();
-			
-			documento.add(new Paragraph("Esto es el primer párrafo, normalito"));
-
-			documento.add(new Paragraph("Este es el segundo y tiene una fuente rara",
-							FontFactory.getFont("arial",   // fuente
-							22,                            // tamaño
-							Font.ITALIC,                   // estilo
-							BaseColor.CYAN)));             // color
-			
-			try
-			{
-				Image foto = Image.getInstance("src/main/resources/Kratos.png");
-				foto.scaleToFit(100, 100);
-				foto.setAlignment(Chunk.ALIGN_MIDDLE);
-				documento.add(foto);
-			}
-			catch ( Exception e )
-			{
-				e.printStackTrace();
-			}
-			
-			documento.close();
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
+		// TODO Auto-generated method stub
 		
 	};
-	
-	public void visualizarReporteGenerado() {};
 	
 						   
 }

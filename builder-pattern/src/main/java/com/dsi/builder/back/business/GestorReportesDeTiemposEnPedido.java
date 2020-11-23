@@ -14,7 +14,7 @@ public class GestorReportesDeTiemposEnPedido {
 	
 	private ArrayList<Estado> estadosSeleccionados = new ArrayList<Estado>();
 	private Date fechaActual = new Date();
-	private String nombreUsuarioLog = "Mich";
+	private String nombreUsuarioLog = "Diego Delgado";
 	private ArrayList<Sector> sectoresSelecc = new ArrayList<Sector>();
 	private ArrayList<Piso> pisosSelecc = new ArrayList<Piso>();
 	private ArrayList<Pair<String, Long>> tuplas = new ArrayList<Pair<String, Long>>();
@@ -135,9 +135,9 @@ public class GestorReportesDeTiemposEnPedido {
 			} else {
 				
 				wildcardResults.add(eEstado.getNombre());
-				wildcardResults.add(String.valueOf("No existen referencias"));
-				wildcardResults.add(String.valueOf("No existen referencias"));
-				wildcardResults.add(String.valueOf("No existen referencias"));
+				wildcardResults.add(String.valueOf("N/A"));
+				wildcardResults.add(String.valueOf("N/A"));
+				wildcardResults.add(String.valueOf("N/A"));
 				
 				results.add(wildcardResults);
 			}

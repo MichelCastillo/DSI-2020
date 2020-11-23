@@ -21,6 +21,9 @@ import com.dsi.builder.back.business.Piso;
 import com.dsi.builder.back.business.Seccion;
 import com.dsi.builder.back.business.Sector;
 
+import com.dsi.builder.back.pattern.*;
+import com.itextpdf.text.DocumentException;
+
 public class main {
 
 	@SuppressWarnings("resource")
@@ -338,6 +341,7 @@ public class main {
 		secciones2Piso3.add(seccion10);
 		
 		//Creating Sectores
+		ArrayList<Sector> sectores = new ArrayList<Sector>();
 		ArrayList<Sector> sectoresPiso1 = new ArrayList<Sector>();
 		ArrayList<Sector> sectoresPiso2 = new ArrayList<Sector>();
 		ArrayList<Sector> sectoresPiso3 = new ArrayList<Sector>();
@@ -345,16 +349,22 @@ public class main {
 		
 		Sector sector1 = new Sector("Sector 1 - Piso 1", 10.0, 10.0, "Cerca", "Cerca", secciones1Piso1);
 		sectoresPiso1.add(sector1);
+		sectores.add(sector1);
 		Sector sector2 = new Sector("Sector 2 - Piso 1", 12.0, 18.0, "Lejos", "Cerca", secciones2Piso1);
 		sectoresPiso1.add(sector2);
+		sectores.add(sector2);
 		Sector sector3 = new Sector("Sector 1 - Piso 2", 14.0, 12.0, "Cerca", "Lejos", secciones1Piso2);
 		sectoresPiso2.add(sector3);
+		sectores.add(sector3);
 		Sector sector4 = new Sector("Sector 2 - Piso 2", 12.0, 14.0, "Lejos", "Lejos", secciones2Piso2);
 		sectoresPiso2.add(sector4);
+		sectores.add(sector4);
 		Sector sector5 = new Sector("Sector 1 - Piso 3", 10.0, 14.0, "Cerca", "Cerca", secciones1Piso3);
 		sectoresPiso3.add(sector5);
+		sectores.add(sector5);
 		Sector sector6 = new Sector("Sector 2 - Piso 3", 13.0, 14.0, "Lejos", "Lejos", secciones2Piso3);
 		sectoresPiso3.add(sector6);
+		sectores.add(sector1);
 		
 		//Creating Pisos
 		ArrayList<Piso> pisos = new ArrayList<Piso>();
@@ -393,21 +403,34 @@ public class main {
 				//Adding estadosSeleccionados
 				gestor.addEstadosSeleccionados(states);
 				
-				//Getting tuplas
-				//gestor.getTiemposPorSector(initialDate, finalDate);
-				gestor.getTiemposSector(initialDate, finalDate, sector1);
+				GeneradorArchivosPDF pdf = new GeneradorArchivosPDF();
 				
-				//Getting Times per Sector
-				gestor.calcularTiemposSectores(gestor.getTuplas());
+				pdf.createPDF();
 				
-				//Displaying Times per Sector
-				System.out.println(gestor.getResults().toString());
+				pdf.addEncabezadoToPDF("Reporte de Tiempos de Pedido", initialDate.toLocaleString(), finalDate.toLocaleString());
 				
+				sectores.forEach(eSector -> {
+					
+					//Getting tuplas
+					//gestor.getTiemposPorSector(initialDate, finalDate);
+					gestor.getTiemposSector(initialDate, finalDate, eSector);
+					
+					//Getting Times per Sector
+					gestor.calcularTiemposSectores(gestor.getTuplas());
+					
+					try {
+						pdf.addCuerpoToPDF(eSector.getNombre(), gestor.getResults());
+					} catch (DocumentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				});
 				
-				//Utils.addEncabezadoToPDF(Utils.createPDF(), "Reporte de Tiempos de Pedido", initialDate.toLocaleString(), finalDate.toLocaleString());
-			
+				pdf.closeDocument();
 				
-				Utils.addCuerpoToPDF(Utils.addEncabezadoToPDF(Utils.createPDF(), "Reporte de Tiempos de Pedido", initialDate.toLocaleString(), finalDate.toLocaleString()), gestor.getSectoresAsString());
+				System.out.println("File created. YAY !");
+				
 				//Displaying all available states for Pedidos
 				//states.forEach(stateElement -> System.out.println(stateElement.toString()));
 				
@@ -425,5 +448,7 @@ public class main {
 		}
 
 	}
+	
+	
 
 }
