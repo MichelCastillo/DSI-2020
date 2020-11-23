@@ -392,7 +392,7 @@ public class main {
 				
 				//Setting period
 				gestor.setPeriodInitialDate(initialDate);
-				gestor.setPeriodInitialDate(finalDate);
+				gestor.setPeriodFinalDate(finalDate);
 				
 				//Adding pisosSelecc
 				gestor.addPisosSeleccionados(pisos);
@@ -403,6 +403,10 @@ public class main {
 				//Adding estadosSeleccionados
 				gestor.addEstadosSeleccionados(states);
 				
+				gestor.generarReportePDF();
+				
+				
+				/*
 				GeneradorArchivosPDF pdf = new GeneradorArchivosPDF();
 				
 				pdf.createPDF(gestor.getUser(), gestor.getFechaHoraActual().toGMTString());
@@ -430,7 +434,7 @@ public class main {
 				pdf.closeDocument();
 				
 				System.out.println("File created. YAY !");
-				
+				*/
 			} else {
 				
 				System.out.print("An error ocurred during period validation -----");	

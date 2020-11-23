@@ -3,6 +3,8 @@ package com.dsi.builder.back.business;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
+
 import com.dsi.builder.back.Utils;
 import com.dsi.builder.back.pattern.ConstructorPDFReporte;
 import com.dsi.builder.back.pattern.DirectorConstruccionReporte;
@@ -19,13 +21,24 @@ public class GestorReportesDeTiemposEnPedido {
 	private ArrayList<Piso> pisosSelecc = new ArrayList<Piso>();
 	private ArrayList<Pair<String, Long>> tuplas = new ArrayList<Pair<String, Long>>();
 	private ArrayList<ArrayList<String>> results = new ArrayList<ArrayList<String>>();
+	private List<ArrayList<ArrayList<String>>> listOfResults = new ArrayList<ArrayList<ArrayList<String>>>();
+	
+	
 	
 	//UC Description
 	
 	//Validate period
 	private Date periodInitialDate;
 	private Date periodFinalDate;	
-
+	
+	public Date getperiodInitialDate() {
+		return this.periodInitialDate;
+	}
+	
+	public Date getperiodFinalDate() {
+		return this.periodFinalDate;
+	}
+	
 	public ArrayList<String> getEstadosAsString(){
 		
 		ArrayList<String> estadosString = new ArrayList<String>();
@@ -50,19 +63,38 @@ public class GestorReportesDeTiemposEnPedido {
 	
 	public void generarReportePDF() throws Exception {
 		
+		createListOfResults();
+		
 		ConstructorPDFReporte constructor = new ConstructorPDFReporte();
 		
 		DirectorConstruccionReporte director = new DirectorConstruccionReporte(constructor);
 		
 		director.construir("Reporte de Tiempos en Pedidos", 
 				periodInitialDate.toString(), periodFinalDate.toString(), estadosSeleccionados.toString(), 
-				sectoresSelecc.toString(), results, this.nombreUsuarioLog, fechaActual.toString());
+				getEstadosAsString(), listOfResults, this.nombreUsuarioLog, fechaActual.toString());
 		
-		GeneradorArchivosPDF report = (GeneradorArchivosPDF) constructor.obtenerProducto();
+		//GeneradorArchivosPDF report = (GeneradorArchivosPDF) constructor.obtenerProducto();
 		
-		report.visualizarReporte();
+		//report.visualizarReporte();
 		
 	};
+	
+	public void createListOfResults() {
+		this.results.clear();
+		
+		this.sectoresSelecc.forEach(eSector -> {
+			
+			//Getting tuplas
+			//gestor.getTiemposPorSector(initialDate, finalDate);
+			getTiemposSector(periodInitialDate, periodFinalDate, eSector);
+			
+			//Getting Times per Sector
+			calcularTiemposSectores(getTuplas());
+			
+			this.listOfResults.add(this.results);
+			
+		});
+	}
 	
 	public ArrayList<Pair<String, Long>> getTuplas(){
 		return this.tuplas;
@@ -176,7 +208,6 @@ public class GestorReportesDeTiemposEnPedido {
 		});
 		
 	}
-	
 	
 	public void addPisosSeleccionados(ArrayList<Piso> pisos) {
 		pisos.forEach(ePiso -> pisosSelecc.add(ePiso));

@@ -1,8 +1,11 @@
 package com.dsi.builder.back.pattern;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.dsi.builder.back.pattern.GeneradorArchivosPDF;
+import com.itextpdf.text.DocumentException;
 
 /**
  * Concrete builders implement steps defined in the upper interface
@@ -21,19 +24,22 @@ public class ConstructorPDFReporte implements IConstructorReporte {
 		return (int) (Math.random() * 10 + 1);
 	}
 	
-	public void construirProducto() {
-		reporte = new GeneradorArchivosPDF();
+	public void construirProducto(String usuario, String fechaHoraGeneracion) {
+		try {
+			reporte = new GeneradorArchivosPDF(usuario, fechaHoraGeneracion);
+		} catch (FileNotFoundException | DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	public void construirPie(String nomUsuario, String fechaHoraGeneracion) {
-		
-		int numPagina = calcularNroPagina();
-		reporte.setPiePagina(nomUsuario, fechaHoraGeneracion, numPagina);
+		reporte.setPiePagina(nomUsuario, fechaHoraGeneracion);
 		
 	}
 
-	public void construirCuerpo(String estados, String vectores, ArrayList<ArrayList<String>> resultados) {
+	public void construirCuerpo(String estados, ArrayList<String> vectores, List<ArrayList<ArrayList<String>>> resultados) {
 		reporte.setCuerpo(estados, vectores, resultados);		
 	}
 

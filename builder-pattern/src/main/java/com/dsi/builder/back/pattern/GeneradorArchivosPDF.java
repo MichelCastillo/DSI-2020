@@ -48,21 +48,27 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 	private String fechaFin;
 	private String fechaInicio;
 	private String titulo;
+	private String usuario;
 	
 	//Cuerpo
 	private String estados;
-	private String vectores;
-	private ArrayList<ArrayList<String>> resultados;	
+	private ArrayList<String> vectores;
+	private List<ArrayList<ArrayList<String>>> resultados;	
 	
 	//Pie
 	private String fechaHoraGeneracion;
-	private String usuario;
 	private int nroPagina;
 	
 	public GeneradorArchivosPDF() {
+		
 	}
 	
-	public GeneradorArchivosPDF(String titulo, Date fechaInicio, Date fechaFin) {
+	public GeneradorArchivosPDF(String usuario, String fechaHoraInicio) throws FileNotFoundException, DocumentException {
+		
+		this.usuario = usuario;
+		this.fechaHoraGeneracion = fechaHoraInicio;
+		
+		createPDF(this.usuario, this.fechaHoraGeneracion);
 	}
 	
 	public void agregarFila(String nombreEstado, double tiempoPermProm, double tiempoPermMax, double tiempoPermMin) {};
@@ -76,34 +82,28 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		
-		//Adding Strings values to Encabezado
-		reporteEncabezado.add(titulo);
-		reporteEncabezado.add(fechaInicio);
-		reporteEncabezado.add(fechaFin);
+		try {
+			addEncabezadoToPDF(this.titulo, this.fechaInicio, this.fechaFin);
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		closeDocument();
+		System.out.println("File created, yaya!!");
 	};
 	
-	public void setCuerpo(String estados, String vectores, ArrayList<ArrayList<String>> resultados) {
+	public void setCuerpo(String estados, ArrayList<String> vectores, List<ArrayList<ArrayList<String>>> resultados) {
 		
 		//Setting Cuerpo attributes
 		this.estados = estados;
 		this.vectores = vectores;
 		this.resultados = resultados;
 		
-		//Making Cuerpo
-		reporteCuerpo.add(this.estados.toString());
-		reporteCuerpo.add(this.vectores.toString());
-		reporteCuerpo.add(this.resultados.toString());
-		
 	};
 			
-	public void setPiePagina(String nombreUsuario, String fechaHoraGeneracion, int nroPagina) {
-			this.usuario = nombreUsuario;
-			this.fechaHoraGeneracion = fechaHoraGeneracion;
-			this.nroPagina = nroPagina;
-			
-			reportePie.add(this.usuario);
-			reportePie.add(this.fechaHoraGeneracion);
-			reportePie.add(String.valueOf(this.nroPagina));
+	public void setPiePagina(String nombreUsuario, String fechaHoraGeneracion) {
+			//TODO: This implementation was not necessary
 	};
 	
 	public static String toString(double[][] M) {
@@ -208,9 +208,9 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 		PdfPTable tabla = new PdfPTable(4);
 		
 		tabla.addCell("Estado");
-		tabla.addCell("MAX");
-		tabla.addCell("MIN");
-		tabla.addCell("AVG");
+		tabla.addCell("MÁXIMO");
+		tabla.addCell("MÍNIMO");
+		tabla.addCell("PROMEDIO");
 	
     	resultados.forEach(eResultado -> {
 				tabla.addCell(eResultado.get(0));

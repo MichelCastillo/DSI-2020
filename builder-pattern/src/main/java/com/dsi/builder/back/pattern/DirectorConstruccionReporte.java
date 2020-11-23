@@ -1,6 +1,7 @@
 package com.dsi.builder.back.pattern;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DirectorConstruccionReporte {
 	
@@ -14,15 +15,15 @@ public class DirectorConstruccionReporte {
 						  String fechaInicio,
 						  String fechaFin,
 						  String estados,
-						  String sectores,
-						  ArrayList<ArrayList<String>> resultados,
+						  ArrayList<String> sectores,
+						  List<ArrayList<ArrayList<String>>> resultados,
 						  String nomUsuario,
 						  String fechaHoraGeneracion
 			             ) 
 	{
-		constructor.construirProducto();
+		constructor.construirProducto(nomUsuario, fechaHoraGeneracion);
 		constructor.construirEncabezado(titulo, fechaInicio, fechaFin);
-		constructor.construirCuerpo(estados, sectores, resultados);
+		//constructor.construirCuerpo(estados, sectores, resultados);
 		constructor.construirPie(nomUsuario, fechaHoraGeneracion);
 	}
 
