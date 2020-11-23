@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class Usuario {
     private String nombre;
-    private String contraseña;
+    private String contrasena;
     private LocalDate fechaBaja;
     private LocalDate fechaCreacion;
 
@@ -15,16 +15,16 @@ public class Usuario {
 
     public void conocerPerfil(){}
 
-    public void validarContraseña(){}
+    public void validarContrasena(){}
 
     public String getNombre()
     {
         return this.nombre;
     }
 
-    public Usuario(String nombre, String contraseña) {
+    public Usuario(String nombre, String contrasena) {
         this.nombre = nombre;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
         this.fechaCreacion = LocalDate.now();
     }
 }
