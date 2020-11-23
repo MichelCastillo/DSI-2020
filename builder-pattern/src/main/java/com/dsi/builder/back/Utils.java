@@ -15,6 +15,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
@@ -82,12 +83,6 @@ public class Utils {
     	// Se abre el documento.
     	document.open();
     	
-    	document.add(new Paragraph("Reporte de Tiempos de Pedido - UTN FRC - DSI 2020",
-    					FontFactory.getFont("arial",   // fuente
-    					15,                            // tamaño
-    					Font.BOLD,                   // estilo
-    					BaseColor.BLACK)));
-    	
     	try
     	{
     		Image foto = Image.getInstance("src/main/resources/UTN_Logo.jpg");
@@ -103,10 +98,58 @@ public class Utils {
     		e.printStackTrace();
     	}
     	
-    	document.close();
+    	return document;
+    	
+    }
+    
+    public static Document addEncabezadoToPDF(Document document, String titulo, String fechaInicio, String fechaFin) throws DocumentException {
+    	
+    	document.add(new Paragraph(titulo + " - UTN FRC - DSI 2020",
+				FontFactory.getFont("arial",   // fuente
+				15,                            // tamaño
+				Font.BOLD,                   // estilo
+				BaseColor.BLACK)));
+    	
+    	document.add(new Paragraph("Período " + fechaInicio + " - " + fechaFin,
+				FontFactory.getFont("arial",   // fuente
+				12,                            // tamaño
+				Font.BOLD,                   // estilo
+				BaseColor.BLACK)));
     	
     	return document;
     	
+    }
+    
+    public static Document addCuerpoToPDF(Document document, ArrayList<String> sectores) {//, ArrayList<String> resultados) throws DocumentException {
+    	
+    	sectores.forEach(eSector -> {
+    		try {
+    			document.add( Chunk.NEWLINE );
+
+				document.add(new Paragraph("- " + eSector,
+						FontFactory.getFont("arial",   // fuente
+						12,                            // tamaño
+						Font.BOLD,                   // estilo
+						BaseColor.BLACK)));
+				
+				document.add( Chunk.NEWLINE.setHorizontalScaling(5));
+				
+				PdfPTable tabla = new PdfPTable(4);
+				for (int i = 0; i < 15; i++)
+				{
+					tabla.addCell("celda " + i);
+				}
+				document.add(tabla);
+				
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	});
+    	
+    	document.close();
+    	
+    	return document;
     }
 
 }

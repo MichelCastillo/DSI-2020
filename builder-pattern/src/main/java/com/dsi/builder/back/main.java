@@ -9,6 +9,8 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Scanner;
 
+import javax.swing.text.Document;
+
 import com.dsi.builder.back.business.Estado;
 import com.dsi.builder.back.business.Factura;
 import com.dsi.builder.back.business.GestorReportesDeTiemposEnPedido;
@@ -401,8 +403,11 @@ public class main {
 				//Displaying Times per Sector
 				System.out.println(gestor.getResults().toString());
 				
-				Utils.createPDF();				
+				
+				//Utils.addEncabezadoToPDF(Utils.createPDF(), "Reporte de Tiempos de Pedido", initialDate.toLocaleString(), finalDate.toLocaleString());
 			
+				
+				Utils.addCuerpoToPDF(Utils.addEncabezadoToPDF(Utils.createPDF(), "Reporte de Tiempos de Pedido", initialDate.toLocaleString(), finalDate.toLocaleString()), gestor.getSectoresAsString());
 				//Displaying all available states for Pedidos
 				//states.forEach(stateElement -> System.out.println(stateElement.toString()));
 				

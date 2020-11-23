@@ -24,8 +24,27 @@ public class GestorReportesDeTiemposEnPedido {
 	
 	//Validate period
 	private Date periodInitialDate;
-	private Date periodFinalDate;
+	private Date periodFinalDate;	
+
+	public ArrayList<String> getEstadosAsString(){
+		
+		ArrayList<String> estadosString = new ArrayList<String>();
+		
+		estadosSeleccionados.forEach(eEstado -> estadosString.add(eEstado.getNombre()));
+		
+		return estadosString;
+		
+	}
 	
+	public ArrayList<String> getSectoresAsString(){
+		
+		ArrayList<String> sectoresString = new ArrayList<String>();
+		
+		sectoresSelecc.forEach(eSector -> sectoresString.add(eSector.getNombre()));
+		
+		return sectoresString;
+		
+	}
 	
 	public GestorReportesDeTiemposEnPedido() {};
 	
