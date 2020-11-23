@@ -3,8 +3,6 @@ package com.dsi.builder.back.business;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
-
 import com.dsi.builder.back.Utils;
 
 import javafx.util.Pair;
@@ -12,15 +10,11 @@ import javafx.util.Pair;
 public class GestorReportesDeTiemposEnPedido {
 	
 	private ArrayList<Estado> estadosSeleccionados = new ArrayList<Estado>();
-	private Date fechaHoraActual = new Date();
 	private String nombreUsuarioLog = "Mich";
 	private ArrayList<Sector> sectoresSelecc = new ArrayList<Sector>();
 	private ArrayList<Piso> pisosSelecc = new ArrayList<Piso>();
 	private ArrayList<Pair<String, Long>> tuplas = new ArrayList<Pair<String, Long>>();
 	private ArrayList<ArrayList<String>> results = new ArrayList<ArrayList<String>>();
-	private Double[][] tiemposPermMax;
-	private Double[][] tiemposPermMin;
-	private Double[][] tiemposPermDouble;
 	
 	//UC Description
 	
