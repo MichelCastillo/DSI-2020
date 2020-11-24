@@ -138,7 +138,7 @@ public class Visualizar extends javax.swing.JFrame {
         if (JOptionPane.showConfirmDialog(rootPane, "¿Desea imprimir el reporte?",
                 "Generación de Reportes", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
             JOptionPane.showConfirmDialog(null, "Hey ! Esta parte no fue implementada :(",
-                "Generación de Reportes - Excel", JOptionPane.PLAIN_MESSAGE);
+                "Generación de Reportes - Imprimir", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_BtnImprimirActionPerformed
 
     private void BtnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPDFActionPerformed
