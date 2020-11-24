@@ -48,7 +48,11 @@ public class Visualizar extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -93,20 +97,30 @@ public class Visualizar extends javax.swing.JFrame {
                 BtnExcelActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 90, 30));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Imagenes\\pdf.jpg")); // NOI18N
+        getContentPane().add(BtnExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 90, 30));
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon("D:\\Imagenes\\excel.jpg")); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("D:\\Imagenes\\print.jpg")); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\Imagenes\\FONDO.jpeg")); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pdf.jpg"))); // NOI18N
+        jLabel5.setToolTipText("");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 70, 90));
+        jLabel5.getAccessibleContext().setAccessibleName("img_PDF");
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/excel.jpg"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, 90));
+        jLabel8.getAccessibleContext().setAccessibleName("img_Excel");
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/print.jpg"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 70, -1));
+        jLabel9.getAccessibleContext().setAccessibleName("img_Printer");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FONDO.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 280));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pdf.jpg"))); // NOI18N
+        jLabel7.setToolTipText("");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 70, 90));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -123,8 +137,8 @@ public class Visualizar extends javax.swing.JFrame {
     private void BtnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnImprimirActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "¿Desea imprimir el reporte?",
                 "Generación de Reportes", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-            System.out.println("REPORTE A IMPRESORA");
-        // TODO add your handling code here:
+            JOptionPane.showConfirmDialog(null, "Hey ! Esta parte no fue implementada :(",
+                "Generación de Reportes - Excel", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_BtnImprimirActionPerformed
 
     private void BtnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPDFActionPerformed
@@ -146,6 +160,7 @@ public class Visualizar extends javax.swing.JFrame {
                 }             
         this.setVisible(false);
         reportesEnTiempoDePedido main = new reportesEnTiempoDePedido();
+        main.setVisible(true);
         }
         }
     }//GEN-LAST:event_BtnPDFActionPerformed
@@ -153,7 +168,9 @@ public class Visualizar extends javax.swing.JFrame {
     private void BtnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcelActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "¿Desea Generar el reporte en formato EXCEL?",
                 "Generación de Reportes", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-            System.out.println("REPORTE EN EXCEL");        // TODO add your handling code here:
+            JOptionPane.showConfirmDialog(null, "Hey ! Esta parte no fue implementada :(",
+                "Generación de Reportes - Excel", JOptionPane.PLAIN_MESSAGE);
+            
     }//GEN-LAST:event_BtnExcelActionPerformed
 
     /**
@@ -201,6 +218,10 @@ public class Visualizar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }

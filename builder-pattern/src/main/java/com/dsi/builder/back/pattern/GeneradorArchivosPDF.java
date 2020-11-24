@@ -217,8 +217,8 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 		PdfPTable tabla = new PdfPTable(4);
 		
 		tabla.addCell("Estado");
-		tabla.addCell("M�XIMO");
-		tabla.addCell("M�NIMO");
+		tabla.addCell("MAXIMO");
+		tabla.addCell("MINIMO");
 		tabla.addCell("PROMEDIO");
 	
     	resultados.forEach(eResultado -> {

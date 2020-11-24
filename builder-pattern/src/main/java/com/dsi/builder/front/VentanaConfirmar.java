@@ -68,11 +68,11 @@ public class VentanaConfirmar extends javax.swing.JFrame {
         jLabel4.setToolTipText("");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("D:\\Imagenes\\FONDO.jpeg")); // NOI18N
-        jLabel5.setText("jLabel5");
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FONDO.jpeg"))); // NOI18N
         jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel5.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 180));
+        jLabel5.getAccessibleContext().setAccessibleName("img_Fondo_confirmarGeneracion");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

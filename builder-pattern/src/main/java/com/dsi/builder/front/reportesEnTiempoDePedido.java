@@ -122,14 +122,14 @@ public class reportesEnTiempoDePedido extends javax.swing.JFrame {
                 TxtFechaInicioActionPerformed(evt);
             }
         });
-        getContentPane().add(TxtFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 150, 30));
+        getContentPane().add(TxtFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 150, 30));
 
         TxtFechaFin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtFechaFinActionPerformed(evt);
             }
         });
-        getContentPane().add(TxtFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 150, 30));
+        getContentPane().add(TxtFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 150, 30));
 
         CheckNotificado.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         CheckNotificado.setForeground(new java.awt.Color(255, 255, 255));
@@ -268,17 +268,17 @@ public class reportesEnTiempoDePedido extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("de Pedido");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 510, 61));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 510, 61));
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Periodo inicial");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 180, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 180, -1));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Periodo final");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 200, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 200, -1));
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -293,11 +293,11 @@ public class reportesEnTiempoDePedido extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Calibri", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Reportes en tiempos");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 510, 61));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 510, 61));
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 40, 40));
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 50, 40));
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FONDO.jpeg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 480));
 
         pack();
