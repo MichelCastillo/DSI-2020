@@ -27,7 +27,27 @@ public class GestorReportesDeTiemposEnPedido {
 	private Date periodInitialDate;
 	private Date periodFinalDate;	
 	
-	public Date getperiodInitialDate() {
+	public GestorReportesDeTiemposEnPedido() {};
+	
+	public void generarReportePDF() throws Exception {
+		
+		createListOfResults();
+		
+		ConstructorPDFReporte constructor = new ConstructorPDFReporte();
+		
+		DirectorConstruccionReporte director = new DirectorConstruccionReporte(constructor);
+		
+		director.construir("Reporte de Tiempos en Pedidos", 
+				periodInitialDate.toGMTString(), periodFinalDate.toGMTString(), estadosSeleccionados.toString(), 
+				getSectoresAsString(), listOfResults, this.nombreUsuarioLog, fechaActual.toString());
+		
+		//GeneradorArchivosPDF report = (GeneradorArchivosPDF) constructor.obtenerProducto();
+		
+		//report.visualizarReporte();
+		
+	}
+        
+        public Date getperiodInitialDate() {
 		return this.periodInitialDate;
 	}
 	
@@ -54,26 +74,6 @@ public class GestorReportesDeTiemposEnPedido {
 		return sectoresString;
 		
 	}
-	
-	public GestorReportesDeTiemposEnPedido() {};
-	
-	public void generarReportePDF() throws Exception {
-		
-		createListOfResults();
-		
-		ConstructorPDFReporte constructor = new ConstructorPDFReporte();
-		
-		DirectorConstruccionReporte director = new DirectorConstruccionReporte(constructor);
-		
-		director.construir("Reporte de Tiempos en Pedidos", 
-				periodInitialDate.toGMTString(), periodFinalDate.toGMTString(), estadosSeleccionados.toString(), 
-				getSectoresAsString(), listOfResults, this.nombreUsuarioLog, fechaActual.toString());
-		
-		//GeneradorArchivosPDF report = (GeneradorArchivosPDF) constructor.obtenerProducto();
-		
-		//report.visualizarReporte();
-		
-	};
 	
 	public void createListOfResults() {
 		this.results.clear();
