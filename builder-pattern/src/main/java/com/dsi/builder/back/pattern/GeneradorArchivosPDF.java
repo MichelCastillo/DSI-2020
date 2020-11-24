@@ -193,7 +193,7 @@ public class GeneradorArchivosPDF implements IPresentacionReporte{
 				Font.BOLD,                   // estilo
 				BaseColor.BLACK)));
     	
-    	this.document.add(new Paragraph("Per�odo " + fechaInicio + " - " + fechaFin,
+    	this.document.add(new Paragraph("Periodo " + fechaInicio + " - " + fechaFin,
 				FontFactory.getFont("arial",   // fuente
 				12,                            // tama�o
 				Font.BOLD,                   // estilo

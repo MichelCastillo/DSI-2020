@@ -506,7 +506,6 @@ public class reportesEnTiempoDePedido extends javax.swing.JFrame {
                             }
 
                             //Creating Historial Estados
-
                             Calendar myDate = new GregorianCalendar();
 
                             String fechaInicio = "19/11/2020 20:00:00";
@@ -738,7 +737,7 @@ public class reportesEnTiempoDePedido extends javax.swing.JFrame {
                             gestor.addEstadosSeleccionados(states);
                             
                             new Visualizar(gestor).setVisible(true);
-                            this.setVisible (false);
+                            this.setVisible(false);
                             
                         } else {
                             //System.out.println("No cargo correctamente los datos, reintente");

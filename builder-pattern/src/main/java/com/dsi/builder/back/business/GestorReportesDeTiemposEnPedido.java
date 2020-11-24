@@ -23,6 +23,8 @@ public class GestorReportesDeTiemposEnPedido {
 	private ArrayList<ArrayList<String>> results = new ArrayList<ArrayList<String>>();
 	private List<ArrayList<ArrayList<String>>> listOfResults = new ArrayList<ArrayList<ArrayList<String>>>();
         
+        private GeneradorArchivosPDF productoObtenido = new GeneradorArchivosPDF();
+        
 	//Validate period
 	private Date periodInitialDate;
 	private Date periodFinalDate;	
@@ -41,6 +43,8 @@ public class GestorReportesDeTiemposEnPedido {
 				periodInitialDate.toGMTString(), periodFinalDate.toGMTString(), estadosSeleccionados.toString(), 
 				getSectoresAsString(), listOfResults, this.nombreUsuarioLog, fechaActual.toString());
 		
+                this.productoObtenido = (GeneradorArchivosPDF) constructor.obtenerProducto();
+                
 		//GeneradorArchivosPDF report = (GeneradorArchivosPDF) constructor.obtenerProducto();
 		
 		//report.visualizarReporte();
@@ -131,7 +135,7 @@ public class GestorReportesDeTiemposEnPedido {
 		ArrayList<ArrayList<String>> results = new ArrayList<ArrayList<String>>();
 		
 		this.estadosSeleccionados
-						.forEach(eEstado -> {
+                                        .forEach(eEstado -> {
 			
 			ArrayList<Long> values = new ArrayList<Long>();
 			ArrayList<String> wildcardResults = new ArrayList<String>();
@@ -141,13 +145,13 @@ public class GestorReportesDeTiemposEnPedido {
 			Double avg = 0.0;
 			
 			if (listOfTuplas.stream()
-						.anyMatch(tupla -> tupla.getKey().equals(eEstado.getNombre()))) {
+                                            .anyMatch(tupla -> tupla.getKey().equals(eEstado.getNombre()))) {
 			
 				listOfTuplas.stream()
-							.filter(tupla -> tupla.getKey().equals(eEstado.getNombre()))
-							.forEach(tupla -> {
-								values.add(tupla.getValue());
-							});
+                                                .filter(tupla -> tupla.getKey().equals(eEstado.getNombre()))
+                                                .forEach(tupla -> {
+                                                        values.add(tupla.getValue());
+                                                });
 				
 				maxValue = Collections.max(values);
 				minValue = Collections.min(values);
@@ -193,9 +197,9 @@ public class GestorReportesDeTiemposEnPedido {
 		ArrayList<HistorialEstado> historialesInvolucrados = new ArrayList<HistorialEstado>();
 		
 		pedidosInvolucrados
-					.stream()
-					.filter(ePedido -> ePedido.esDePeriodo(initialDate, finalDate))
-					.forEach(ePedido -> historialesInvolucrados.addAll(ePedido.getHistorial()));
+                            .stream()
+                            .filter(ePedido -> ePedido.esDePeriodo(initialDate, finalDate))
+                            .forEach(ePedido -> historialesInvolucrados.addAll(ePedido.getHistorial()));
 			
 		historialesInvolucrados.forEach(eHistorial -> {
 			Pair<String, Long> tupla = new Pair<String, Long>(eHistorial.conocerEstado().getNombre(), eHistorial.calcularDuracionEnEstado());
